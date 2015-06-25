@@ -1,0 +1,187 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "brand",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Brand",
+            "fieldNameUnderscored": "brand",
+            "fieldInJavaBeanMethod": "Brand",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Name",
+            "fieldNameUnderscored": "name",
+            "fieldInJavaBeanMethod": "Name",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "engineCapacity",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "EngineCapacity",
+            "fieldNameUnderscored": "engine_capacity",
+            "fieldInJavaBeanMethod": "EngineCapacity",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "yearOfManufacture",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "YearOfManufacture",
+            "fieldNameUnderscored": "year_of_manufacture",
+            "fieldInJavaBeanMethod": "YearOfManufacture",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "location",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Location",
+            "fieldNameUnderscored": "location",
+            "fieldInJavaBeanMethod": "Location",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "kms",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Kms",
+            "fieldNameUnderscored": "kms",
+            "fieldInJavaBeanMethod": "Kms",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 7,
+            "fieldName": "owners",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Owners",
+            "fieldNameUnderscored": "owners",
+            "fieldInJavaBeanMethod": "Owners",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 8,
+            "fieldName": "price",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Price",
+            "fieldNameUnderscored": "price",
+            "fieldInJavaBeanMethod": "Price",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 9,
+            "fieldName": "score",
+            "fieldType": "BigDecimal",
+            "fieldNameCapitalized": "Score",
+            "fieldNameUnderscored": "score",
+            "fieldInJavaBeanMethod": "Score",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 10,
+            "fieldName": "type",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "Type",
+            "fieldNameUnderscored": "type",
+            "fieldInJavaBeanMethod": "Type",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 11,
+            "fieldName": "thumbnail",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Thumbnail",
+            "fieldNameUnderscored": "thumbnail",
+            "fieldInJavaBeanMethod": "Thumbnail",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 12,
+            "fieldName": "reserved",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Reserved",
+            "fieldNameUnderscored": "reserved",
+            "fieldInJavaBeanMethod": "Reserved",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 13,
+            "fieldName": "sold",
+            "fieldType": "Boolean",
+            "fieldNameCapitalized": "Sold",
+            "fieldNameUnderscored": "sold",
+            "fieldInJavaBeanMethod": "Sold",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 14,
+            "fieldName": "bikeId",
+            "fieldType": "String",
+            "fieldNameCapitalized": "BikeId",
+            "fieldNameUnderscored": "bike_id",
+            "fieldInJavaBeanMethod": "BikeId",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldId": 15,
+            "fieldName": "detailId",
+            "fieldType": "String",
+            "fieldNameCapitalized": "DetailId",
+            "fieldNameUnderscored": "detail_id",
+            "fieldInJavaBeanMethod": "DetailId",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOwnerOneToOne": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": true,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "validation": true
+}

@@ -1,0 +1,163 @@
+<div>
+
+    <h2>BikeDetailss</h2>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#saveBikeDetailsModal" ng-click="clear()">
+                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new BikeDetails</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="saveBikeDetailsModal" tabindex="-1" role="dialog" aria-labelledby="myBikeDetailsLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title" id="myBikeDetailsLabel">Create or edit a BikeDetails</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="text" class="form-control" name="id"
+                                   ng-model="bikeDetails.id" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Owner</label>
+                            <input type="text" class="form-control" name="owner"
+                                   ng-model="bikeDetails.owner">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Features</label>
+                            <input type="text" class="form-control" name="features"
+                                   ng-model="bikeDetails.features">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Documents</label>
+                            <input type="text" class="form-control" name="documents"
+                                   ng-model="bikeDetails.documents">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Report</label>
+                            <input type="text" class="form-control" name="report"
+                                   ng-model="bikeDetails.report">
+
+                        </div>
+                        <div class="form-group">
+                            <label>Performance</label>
+                            <input type="text" class="form-control" name="performance"
+                                   ng-model="bikeDetails.performance">
+
+                        </div>
+                        <div class="form-group">
+                            <label>DetailId</label>
+                            <input type="number" class="form-control" name="detailId"
+                                   ng-model="bikeDetails.detailId" required>
+
+                            <div ng-show="editForm.detailId.$invalid">
+                                <p class="help-block"
+                                   ng-show="editForm.detailId.$error.required">
+                                    This field is required.
+                                </p>
+                                <p class="help-block"
+                                   ng-show="editForm.detailId.$error.number">
+                                    This field should be a number.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteBikeDetailsConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(bikeDetails.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this BikeDetails?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Owner</th>
+                    <th>Features</th>
+                    <th>Documents</th>
+                    <th>Report</th>
+                    <th>Performance</th>
+                    <th>DetailId</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="bikeDetails in bikeDetailss">
+                    <td><a ui-sref="bikeDetailsDetail({id:bikeDetails.id})">{{bikeDetails.id}}</a></td>
+                    <td>{{bikeDetails.owner}}</td>
+                    <td>{{bikeDetails.features}}</td>
+                    <td>{{bikeDetails.documents}}</td>
+                    <td>{{bikeDetails.report}}</td>
+                    <td>{{bikeDetails.performance}}</td>
+                    <td>{{bikeDetails.detailId}}</td>
+                    <td>
+                        <button type="submit"
+                                ui-sref="bikeDetailsDetail({id:bikeDetails.id})"
+                                class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="showUpdate(bikeDetails.id)"
+                                class="btn btn-primary btn-sm">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                        </button>
+                        <button type="submit"
+                                ng-click="delete(bikeDetails.id)"
+                                class="btn btn-danger btn-sm">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

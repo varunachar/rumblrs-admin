@@ -1,0 +1,21 @@
+{
+  "generator-jhipster": {
+    "baseName": "RumblrsAdmin",
+    "packageName": "com.rumblrs.admin",
+    "packageFolder": "com/rumblrs/admin",
+    "authenticationType": "oauth2",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "spring-websocket",
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": "no",
+    "useCompass": true,
+    "buildTool": "maven",
+    "frontendBuilder": "gulp",
+    "javaVersion": "8",
+    "enableTranslation": false,
+    "rememberMeKey": "34b293aac4beb39950790281b4bc2333836f2c5a"
+  }
+}

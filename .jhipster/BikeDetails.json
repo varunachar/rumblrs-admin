@@ -1,0 +1,73 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "owner",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Owner",
+            "fieldNameUnderscored": "owner",
+            "fieldInJavaBeanMethod": "Owner",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "features",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Features",
+            "fieldNameUnderscored": "features",
+            "fieldInJavaBeanMethod": "Features",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "documents",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Documents",
+            "fieldNameUnderscored": "documents",
+            "fieldInJavaBeanMethod": "Documents",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "report",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Report",
+            "fieldNameUnderscored": "report",
+            "fieldInJavaBeanMethod": "Report",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 5,
+            "fieldName": "performance",
+            "fieldType": "String",
+            "fieldNameCapitalized": "Performance",
+            "fieldNameUnderscored": "performance",
+            "fieldInJavaBeanMethod": "Performance",
+            "fieldValidate": false
+        },
+        {
+            "fieldId": 6,
+            "fieldName": "detailId",
+            "fieldType": "Integer",
+            "fieldNameCapitalized": "DetailId",
+            "fieldNameUnderscored": "detail_id",
+            "fieldInJavaBeanMethod": "DetailId",
+            "fieldValidate": true,
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "fieldsContainOwnerManyToMany": false,
+    "fieldsContainOwnerOneToOne": false,
+    "fieldsContainOneToMany": false,
+    "fieldsContainLocalDate": false,
+    "fieldsContainCustomTime": false,
+    "fieldsContainBigDecimal": false,
+    "fieldsContainDateTime": false,
+    "fieldsContainDate": false,
+    "dto": "no",
+    "pagination": "no",
+    "validation": true
+}
