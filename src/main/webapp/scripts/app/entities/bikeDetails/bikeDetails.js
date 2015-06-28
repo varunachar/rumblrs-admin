@@ -3,33 +3,33 @@
 angular.module('rumblrsadminApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('bike', {
+            .state('bikeDetails', {
                 parent: 'entity',
-                url: '/bike',
+                url: '/bikeDetails',
                 data: {
                     roles: ['ROLE_USER'],
-                    pageTitle: 'Bikes'
+                    pageTitle: 'BikeDetailss'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/bike/bikes.html',
-                        controller: 'BikeController'
+                        templateUrl: 'scripts/app/entities/bikeDetails/bikeDetailss.html',
+                        controller: 'BikeDetailsController'
                     }
                 },
                 resolve: {
                 }
             })
-            .state('bikeDetail', {
+            .state('bikeDetailsDetail', {
                 parent: 'entity',
-                url: '/bike/:id',
+                url: '/bikeDetails/:id',
                 data: {
                     roles: ['ROLE_USER'],
-                    pageTitle: 'Bike'
+                    pageTitle: 'BikeDetails'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/bike/bike-detail.html',
-                        controller: 'BikeDetailController'
+                        templateUrl: 'scripts/app/entities/bikeDetails/bikeDetails-detail.html',
+                        controller: 'BikeDetailsDetailController'
                     }
                 },
                 resolve: {

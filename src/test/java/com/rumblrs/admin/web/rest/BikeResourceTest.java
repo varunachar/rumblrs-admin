@@ -110,6 +110,7 @@ public class BikeResourceTest {
         bike.setThumbnail(DEFAULT_THUMBNAIL);
         bike.setReserved(DEFAULT_RESERVED);
         bike.setSold(DEFAULT_SOLD);
+        bike.setBikeId(DEFAULT_BIKE_ID);
         bike.setDetailId(DEFAULT_DETAIL_ID);
     }
 
@@ -140,6 +141,7 @@ public class BikeResourceTest {
         assertThat(testBike.getThumbnail()).isEqualTo(DEFAULT_THUMBNAIL);
         assertThat(testBike.getReserved()).isEqualTo(DEFAULT_RESERVED);
         assertThat(testBike.getSold()).isEqualTo(DEFAULT_SOLD);
+        assertThat(testBike.getBikeId()).isEqualTo(DEFAULT_BIKE_ID);
         assertThat(testBike.getDetailId()).isEqualTo(DEFAULT_DETAIL_ID);
     }
 
@@ -328,6 +330,7 @@ public class BikeResourceTest {
         // Validate the database is empty
         assertThat(bikeRepository.findAll()).hasSize(0);
         // set the field null
+        bike.setBikeId(null);
 
         // Create the Bike, which fails.
         restBikeMockMvc.perform(post("/api/bikes")
@@ -440,6 +443,7 @@ public class BikeResourceTest {
         bike.setThumbnail(UPDATED_THUMBNAIL);
         bike.setReserved(UPDATED_RESERVED);
         bike.setSold(UPDATED_SOLD);
+        bike.setBikeId(UPDATED_BIKE_ID);
         bike.setDetailId(UPDATED_DETAIL_ID);
         restBikeMockMvc.perform(put("/api/bikes")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -463,6 +467,7 @@ public class BikeResourceTest {
         assertThat(testBike.getThumbnail()).isEqualTo(UPDATED_THUMBNAIL);
         assertThat(testBike.getReserved()).isEqualTo(UPDATED_RESERVED);
         assertThat(testBike.getSold()).isEqualTo(UPDATED_SOLD);
+        assertThat(testBike.getBikeId()).isEqualTo(UPDATED_BIKE_ID);
         assertThat(testBike.getDetailId()).isEqualTo(UPDATED_DETAIL_ID);
     }
 

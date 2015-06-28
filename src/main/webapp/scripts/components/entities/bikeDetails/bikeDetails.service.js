@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('rumblrsadminApp')
-    .factory('Bike', function ($resource, DateUtils) {
-        return $resource('api/bikes/:id', {}, {
+    .factory('BikeDetails', function ($resource, DateUtils) {
+        return $resource('api/bikeDetailss/:id', {}, {
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

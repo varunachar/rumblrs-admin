@@ -1,0 +1,70 @@
+
+<div>
+    <h2><span>BikeDetails</span> {{bikeDetails.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span>Owner</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{bikeDetails.owner}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Features</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{bikeDetails.features}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Documents</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{bikeDetails.documents}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Report</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{bikeDetails.report}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Performance</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{bikeDetails.performance}}" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>DetailId</span>
+                    </td>
+                    <td>
+                        <input type="text" class="input-sm form-control" value="{{bikeDetails.detailId}}" readonly>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="bikeDetails"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>
