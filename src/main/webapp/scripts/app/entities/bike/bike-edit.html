@@ -1,0 +1,199 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+    <div class="form-group">
+        <label>Brand</label>
+        <input type="text" class="form-control" name="brand"
+               ng-model="bike.brand" required>
+
+        <div ng-show="editForm.brand.$invalid">
+            <p class="help-block"
+               ng-show="editForm.brand.$error.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name"
+               ng-model="bike.name" required>
+
+        <div ng-show="editForm.name.$invalid">
+            <p class="help-block"
+               ng-show="editForm.name.$error.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Engine Capacity</label>
+        <input type="number" class="form-control" name="engineCapacity"
+               ng-model="bike.engineCapacity" required>
+
+        <div ng-show="editForm.engineCapacity.$invalid">
+            <p class="help-block"
+               ng-show="editForm.engineCapacity.$error.required">
+                This field is required.
+            </p>
+            <p class="help-block"
+               ng-show="editForm.engineCapacity.$error.number">
+                This field should be a number.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Year Of Manufacture</label>
+        <input type="number" class="form-control" name="yearOfManufacture"
+               ng-model="bike.yearOfManufacture" required>
+
+        <div ng-show="editForm.yearOfManufacture.$invalid">
+            <p class="help-block"
+               ng-show="editForm.yearOfManufacture.$error.required">
+                This field is required.
+            </p>
+            <p class="help-block"
+               ng-show="editForm.yearOfManufacture.$error.number">
+                This field should be a number.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Location</label>
+        <input type="text" class="form-control" name="location"
+               ng-model="bike.location" required>
+
+        <div ng-show="editForm.location.$invalid">
+            <p class="help-block"
+               ng-show="editForm.location.$error.required">
+                This field is required.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Kms</label>
+        <input type="number" class="form-control" name="kms"
+               ng-model="bike.kms" required>
+
+        <div ng-show="editForm.kms.$invalid">
+            <p class="help-block"
+               ng-show="editForm.kms.$error.required">
+                This field is required.
+            </p>
+            <p class="help-block"
+               ng-show="editForm.kms.$error.number">
+                This field should be a number.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>No of Owners</label>
+        <input type="number" class="form-control" name="owners"
+               ng-model="bike.owners" required>
+
+        <div ng-show="editForm.owners.$invalid">
+            <p class="help-block"
+               ng-show="editForm.owners.$error.required">
+                This field is required.
+            </p>
+            <p class="help-block"
+               ng-show="editForm.owners.$error.number">
+                This field should be a number.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="number" class="form-control" name="price"
+               ng-model="bike.price" required>
+
+        <div ng-show="editForm.price.$invalid">
+            <p class="help-block"
+               ng-show="editForm.price.$error.required">
+                This field is required.
+            </p>
+            <p class="help-block"
+               ng-show="editForm.price.$error.number">
+                This field should be a number.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Rumblrs Rating</label>
+        <input type="number" class="form-control" name="score"
+               ng-model="bike.score" required>
+
+        <div ng-show="editForm.score.$invalid">
+            <p class="help-block"
+               ng-show="editForm.score.$error.required">
+                This field is required.
+            </p>
+            <p class="help-block"
+               ng-show="editForm.score.$error.number">
+                This field should be a number.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Type</label>
+        <input type="number" class="form-control" name="type"
+               ng-model="bike.type" required>
+
+        <div ng-show="editForm.type.$invalid">
+            <p class="help-block"
+               ng-show="editForm.type.$error.required">
+                This field is required.
+            </p>
+            <p class="help-block"
+               ng-show="editForm.type.$error.number">
+                This field should be a number.
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Thumbnail</label>
+        <input type="text" class="form-control" name="thumbnail"
+               ng-model="bike.thumbnail">
+
+    </div>
+    <div class="form-group">
+        <label>Reserved</label>
+        <input type="checkbox" class="form-control" name="reserved"
+               ng-model="bike.reserved">
+
+    </div>
+    <div class="form-group">
+        <label>Sold</label>
+        <input type="checkbox" class="form-control" name="sold"
+               ng-model="bike.sold">
+    </div>
+    <!-- Bike report details-->
+    <div class="form-group">
+        <label>Owner</label>
+        <input type="text" class="form-control" name="owner"
+               ng-model="bikeDetail.owner">
+    </div>
+    <div class="form-group">
+        <label>Features</label>
+        <input type="text" class="form-control" name="features"
+               ng-model="bikeDetail.features">
+    </div>
+    <div class="form-group">
+        <label>Documents</label>
+        <input type="text" class="form-control" name="documents"
+               ng-model="bikeDetail.documents">
+    </div>
+    <div class="form-group">
+        <label>Report</label>
+        <input type="text" class="form-control" name="report"
+               ng-model="bikeDetail.report">
+    </div>
+    <div class="form-group">
+        <label>Performance</label>
+        <input type="text" class="form-control" name="performance"
+               ng-model="bikeDetail.performance">
+    </div>
+    <button type="submit" ui-sref="bike" class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Cancel</span>
+    </button>
+    <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+        <span class="glyphicon glyphicon-save"></span>&nbsp;<span> Save</span>
+    </button>
+</form>

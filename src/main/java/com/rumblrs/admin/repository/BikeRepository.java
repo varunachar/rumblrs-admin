@@ -1,7 +1,8 @@
 package com.rumblrs.admin.repository;
 
-import com.rumblrs.admin.domain.Bike;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.rumblrs.admin.domain.Bike;
 
 /**
  * Spring Data MongoDB repository for the Bike entity.

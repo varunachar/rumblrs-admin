@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rumblrsadminApp')
-    .config(function ($stateProvider) {
+    .config(function($stateProvider) {
         $stateProvider
             .state('bike', {
                 parent: 'entity',
@@ -16,23 +16,21 @@ angular.module('rumblrsadminApp')
                         controller: 'BikeController'
                     }
                 },
-                resolve: {
-                }
+                resolve: {}
             })
-            .state('bikeDetail', {
+            .state('bikeEdit', {
                 parent: 'entity',
-                url: '/bike/:id',
+                url: '/bike/edit/:id',
                 data: {
                     roles: ['ROLE_USER'],
-                    pageTitle: 'Bike'
+                    pageTitle: 'Bike Edit'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/bike/bike-detail.html',
-                        controller: 'BikeDetailController'
+                        templateUrl: 'scripts/app/entities/bike/bike-edit.html',
+                        controller: 'BikeEditController'
                     }
                 },
-                resolve: {
-                }
+                resolve: {}
             });
     });

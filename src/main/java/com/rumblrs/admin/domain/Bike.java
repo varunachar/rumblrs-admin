@@ -1,13 +1,14 @@
 package com.rumblrs.admin.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * A Bike.
@@ -66,10 +67,6 @@ public class Bike implements Serializable {
 
     @Field("sold")
     private Boolean sold;
-
-    @NotNull
-    @Field("bike_id")
-    private String bikeId;
 
     @NotNull
     @Field("detail_id")
@@ -187,14 +184,6 @@ public class Bike implements Serializable {
         this.sold = sold;
     }
 
-    public String getBikeId() {
-        return bikeId;
-    }
-
-    public void setBikeId(String bikeId) {
-        this.bikeId = bikeId;
-    }
-
     public String getDetailId() {
         return detailId;
     }
@@ -241,7 +230,6 @@ public class Bike implements Serializable {
                 ", thumbnail='" + thumbnail + "'" +
                 ", reserved='" + reserved + "'" +
                 ", sold='" + sold + "'" +
-                ", bikeId='" + bikeId + "'" +
                 ", detailId='" + detailId + "'" +
                 '}';
     }
