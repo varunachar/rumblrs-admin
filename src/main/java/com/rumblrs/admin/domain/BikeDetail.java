@@ -1,18 +1,17 @@
 package com.rumblrs.admin.domain;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A BikeDetails.
  */
 @Document(collection = "BIKEDETAILS")
-public class BikeDetails implements Serializable {
+public class BikeDetail implements Serializable {
 
     @Id
     private String id;
@@ -31,10 +30,6 @@ public class BikeDetails implements Serializable {
 
     @Field("performance")
     private String performance;
-
-    @NotNull
-    @Field("detail_id")
-    private Integer detailId;
 
     public String getId() {
         return id;
@@ -84,14 +79,6 @@ public class BikeDetails implements Serializable {
         this.performance = performance;
     }
 
-    public Integer getDetailId() {
-        return detailId;
-    }
-
-    public void setDetailId(Integer detailId) {
-        this.detailId = detailId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -101,7 +88,7 @@ public class BikeDetails implements Serializable {
             return false;
         }
 
-        BikeDetails bikeDetails = (BikeDetails) o;
+        BikeDetail bikeDetails = (BikeDetail) o;
 
         if ( ! Objects.equals(id, bikeDetails.id)) return false;
 
@@ -122,7 +109,6 @@ public class BikeDetails implements Serializable {
                 ", documents='" + documents + "'" +
                 ", report='" + report + "'" +
                 ", performance='" + performance + "'" +
-                ", detailId='" + detailId + "'" +
                 '}';
     }
 }

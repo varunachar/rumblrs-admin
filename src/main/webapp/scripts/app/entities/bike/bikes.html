@@ -5,232 +5,186 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#saveBikeModal" ng-click="clear()">
-                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Bike</span>
+                <button type="submit" ui-sref="bikeEdit()" class="btn btn-primary btn-lg">
+                    <span class="glyphicon glyphicon-plus"></span>&nbsp;<span> Create a new bike</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="saveBikeModal" tabindex="-1" role="dialog" aria-labelledby="myBikeLabel"
+    <div class="modal fade" id="viewBikeModal" tabindex="-1" role="dialog" aria-labelledby="myBikeLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
-
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                                ng-click="clear()">&times;</button>
-                        <h4 class="modal-title" id="myBikeLabel">Create or edit a Bike</h4>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="clear()">&times;</button>
+                    <h4 class="modal-title" id="myBikeLabel">Bike Details</h4>
+                </div>
+                <div class="modal-body">
+                    <h2>{{bikeDetail.owner}}'s {{bike.brand}} {{bike.name}} {{bike.engineCapacity}}cc</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span>Brand</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.brand}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Name</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.name}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Engine Capacity</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.engineCapacity}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Year Of Manufacture</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.yearOfManufacture}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Location</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.location}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Kms</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.kms}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Owners</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.owners}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Price</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.price}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Score</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.score}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Type</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.type}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Thumbnail</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.thumbnail}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Reserved</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.reserved}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Sold</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bike.sold}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Owner</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.owner}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Features</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.features}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Documents</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.documents}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Report</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.report}}" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Performance</span>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.performance}}" readonly>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>ID</label>
-                            <input type="text" class="form-control" name="id"
-                                   ng-model="bike.id" readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Brand</label>
-                            <input type="text" class="form-control" name="brand"
-                                   ng-model="bike.brand" required>
-
-                            <div ng-show="editForm.brand.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.brand.$error.required">
-                                    This field is required.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" name="name"
-                                   ng-model="bike.name" required>
-
-                            <div ng-show="editForm.name.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.name.$error.required">
-                                    This field is required.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>EngineCapacity</label>
-                            <input type="number" class="form-control" name="engineCapacity"
-                                   ng-model="bike.engineCapacity" required>
-
-                            <div ng-show="editForm.engineCapacity.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.engineCapacity.$error.required">
-                                    This field is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="editForm.engineCapacity.$error.number">
-                                    This field should be a number.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>YearOfManufacture</label>
-                            <input type="number" class="form-control" name="yearOfManufacture"
-                                   ng-model="bike.yearOfManufacture" required>
-
-                            <div ng-show="editForm.yearOfManufacture.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.yearOfManufacture.$error.required">
-                                    This field is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="editForm.yearOfManufacture.$error.number">
-                                    This field should be a number.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Location</label>
-                            <input type="text" class="form-control" name="location"
-                                   ng-model="bike.location" required>
-
-                            <div ng-show="editForm.location.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.location.$error.required">
-                                    This field is required.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Kms</label>
-                            <input type="number" class="form-control" name="kms"
-                                   ng-model="bike.kms" required>
-
-                            <div ng-show="editForm.kms.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.kms.$error.required">
-                                    This field is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="editForm.kms.$error.number">
-                                    This field should be a number.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Owners</label>
-                            <input type="number" class="form-control" name="owners"
-                                   ng-model="bike.owners" required>
-
-                            <div ng-show="editForm.owners.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.owners.$error.required">
-                                    This field is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="editForm.owners.$error.number">
-                                    This field should be a number.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Price</label>
-                            <input type="number" class="form-control" name="price"
-                                   ng-model="bike.price" required>
-
-                            <div ng-show="editForm.price.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.price.$error.required">
-                                    This field is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="editForm.price.$error.number">
-                                    This field should be a number.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Score</label>
-                            <input type="number" class="form-control" name="score"
-                                   ng-model="bike.score" required>
-
-                            <div ng-show="editForm.score.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.score.$error.required">
-                                    This field is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="editForm.score.$error.number">
-                                    This field should be a number.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Type</label>
-                            <input type="number" class="form-control" name="type"
-                                   ng-model="bike.type" required>
-
-                            <div ng-show="editForm.type.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.type.$error.required">
-                                    This field is required.
-                                </p>
-                                <p class="help-block"
-                                   ng-show="editForm.type.$error.number">
-                                    This field should be a number.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Thumbnail</label>
-                            <input type="text" class="form-control" name="thumbnail"
-                                   ng-model="bike.thumbnail">
-
-                        </div>
-                        <div class="form-group">
-                            <label>Reserved</label>
-                            <input type="checkbox" class="form-control" name="reserved"
-                                   ng-model="bike.reserved">
-
-                        </div>
-                        <div class="form-group">
-                            <label>Sold</label>
-                            <input type="checkbox" class="form-control" name="sold"
-                                   ng-model="bike.sold">
-
-                        </div>
-                        <div class="form-group">
-                            <label>BikeId</label>
-                            <input type="text" class="form-control" name="bikeId"
-                                   ng-model="bike.bikeId" required>
-
-                            <div ng-show="editForm.bikeId.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.bikeId.$error.required">
-                                    This field is required.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>DetailId</label>
-                            <input type="text" class="form-control" name="detailId"
-                                   ng-model="bike.detailId" required>
-
-                            <div ng-show="editForm.detailId.$invalid">
-                                <p class="help-block"
-                                   ng-show="editForm.detailId.$error.required">
-                                    This field is required.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
+                </div>
+                <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
                             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
                         </button>
-                        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -264,28 +218,22 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Brand</th>
                     <th>Name</th>
-                    <th>EngineCapacity</th>
-                    <th>YearOfManufacture</th>
+                    <th>CCs</th>
+                    <th>Year</th>
                     <th>Location</th>
                     <th>Kms</th>
                     <th>Owners</th>
                     <th>Price</th>
                     <th>Score</th>
-                    <th>Type</th>
-                    <th>Thumbnail</th>
                     <th>Reserved</th>
                     <th>Sold</th>
-                    <th>BikeId</th>
-                    <th>DetailId</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
                 <tr ng-repeat="bike in bikes">
-                    <td><a ui-sref="bikeDetail({id:bike.id})">{{bike.id}}</a></td>
                     <td>{{bike.brand}}</td>
                     <td>{{bike.name}}</td>
                     <td>{{bike.engineCapacity}}</td>
@@ -295,20 +243,16 @@
                     <td>{{bike.owners}}</td>
                     <td>{{bike.price}}</td>
                     <td>{{bike.score}}</td>
-                    <td>{{bike.type}}</td>
-                    <td>{{bike.thumbnail}}</td>
                     <td>{{bike.reserved}}</td>
                     <td>{{bike.sold}}</td>
-                    <td>{{bike.bikeId}}</td>
-                    <td>{{bike.detailId}}</td>
                     <td>
                         <button type="submit"
-                                ui-sref="bikeDetail({id:bike.id})"
+                                ng-click="showDetails(bike.id)"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
                         </button>
                         <button type="submit"
-                                ng-click="showUpdate(bike.id)"
+                                ui-sref="bikeEdit({id:bike.id})"
                                 class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
                         </button>

@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/"><span>jhipster</span> <span class="navbar-version">v{{VERSION}}</span></a>
+            <a class="navbar-brand" href="#/"><span>Rumblrs</span> <span class="navbar-version">v{{VERSION}}</span></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav nav-pills navbar-right">
@@ -28,11 +28,9 @@
                                 </span>
                     </a>
                     <ul class="dropdown-menu">
+                        <!-- JHipster will add entities to the menu here -->
                         <li ui-sref-active="active" ><a ui-sref="bike"><span class="glyphicon glyphicon-asterisk"></span>
                         &#xA0;<span >bike</span></a></li>
-                        <li ui-sref-active="active" ><a ui-sref="bikeDetails"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >bikeDetails</span></a></li>
-                        <!-- JHipster will add entities to the menu here -->
                     </ul>
                 </li>
                 <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
