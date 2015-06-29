@@ -111,3 +111,6 @@ ul#strength {
     width:20px;
 }
 /* end Password strength bar style */
+
+/* Angular UI bootstrap fix */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

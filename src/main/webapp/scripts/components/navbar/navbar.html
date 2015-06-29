@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#/"><span>Rumblrs</span> <span class="navbar-version">v{{VERSION}}</span></a>
+            <a class="navbar-brand" href="#/"><span>Axlery</span> <span class="navbar-version">v{{VERSION}}</span></a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse" ng-switch="isAuthenticated()">
             <ul class="nav navbar-nav nav-pills navbar-right">
@@ -17,24 +17,30 @@
                         <span>Home</span>
                     </a>
                 </li>
-                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                                <span>
-                                    <span class="glyphicon glyphicon-th-list"></span>
-                                    <span class="hidden-tablet">
-                                        Entities
-                                    </span>
-                                    <b class="caret"></b>
-                                </span>
+                <li ui-sref-active="active" ng-switch-when="true" class="dropdown pointer" dropdown>
+                    <a class="dropdown-toggle" href="" dropdown-toggle>
+                        <span>
+                            <span class="glyphicon glyphicon-th-list"></span>
+                            <span class="hidden-tablet">
+                                Entities
+                            </span>
+                            <b class="caret"></b>
+                        </span>
                     </a>
                     <ul class="dropdown-menu">
+                        <li ui-sref-active="active" ><a ui-sref="brand"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span >Brand</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="model"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span >Model</span></a></li>
+                        <li ui-sref-active="active" ><a ui-sref="body"><span class="glyphicon glyphicon-asterisk"></span>
+                        &#xA0;<span >Body</span></a></li>
                         <!-- JHipster will add entities to the menu here -->
                         <li ui-sref-active="active" ><a ui-sref="bike"><span class="glyphicon glyphicon-asterisk"></span>
-                        &#xA0;<span >bike</span></a></li>
+                        &#xA0;<span >Bike</span></a></li>
                     </ul>
                 </li>
-                <li ng-class="{active: $state.includes('account')}" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                <li ng-class="{active: $state.includes('account')}" class="dropdown pointer" dropdown>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="" dropdown-toggle>
                                 <span>
                                     <span class="glyphicon glyphicon-user"></span>
                                     <span class="hidden-tablet">
@@ -57,8 +63,8 @@
                             &#xA0;<span>Register</span></a></li>
                     </ul>
                 </li>
-                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                <li ng-class="{active: $state.includes('admin')}"  ng-switch-when="true" has-role="ROLE_ADMIN" class="dropdown pointer" dropdown>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="" dropdown-toggle>
                                 <span>
                                     <span class="glyphicon glyphicon-tower"></span>
                                     <span class="hidden-tablet">Administration</span>
