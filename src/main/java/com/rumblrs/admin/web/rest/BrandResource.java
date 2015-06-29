@@ -3,6 +3,8 @@ package com.rumblrs.admin.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.rumblrs.admin.domain.Brand;
 import com.rumblrs.admin.repository.BrandRepository;
+import com.rumblrs.admin.web.rest.service.BrandService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -27,7 +30,7 @@ public class BrandResource {
     private final Logger log = LoggerFactory.getLogger(BrandResource.class);
 
     @Inject
-    private BrandRepository brandRepository;
+    private BrandService brandService;
 
     /**
      * POST  /brands -> Create a new brand.
@@ -41,7 +44,7 @@ public class BrandResource {
         if (brand.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new brand cannot already have an ID").build();
         }
-        brandRepository.save(brand);
+        brandService.save(brand);
         return ResponseEntity.created(new URI("/api/brands/" + brand.getId())).build();
     }
 
@@ -57,7 +60,7 @@ public class BrandResource {
         if (brand.getId() == null) {
             return create(brand);
         }
-        brandRepository.save(brand);
+        brandService.save(brand);
         return ResponseEntity.ok().build();
     }
 
@@ -70,7 +73,7 @@ public class BrandResource {
     @Timed
     public List<Brand> getAll() {
         log.debug("REST request to get all Brands");
-        return brandRepository.findAll();
+        return brandService.findAll();
     }
 
     /**
@@ -82,7 +85,7 @@ public class BrandResource {
     @Timed
     public ResponseEntity<Brand> get(@PathVariable String id) {
         log.debug("REST request to get Brand : {}", id);
-        return Optional.ofNullable(brandRepository.findOne(id))
+        return Optional.ofNullable(brandService.findOne(id))
             .map(brand -> new ResponseEntity<>(
                 brand,
                 HttpStatus.OK))
@@ -95,18 +98,25 @@ public class BrandResource {
     @Timed
     public List<Brand> search(@RequestParam String name) {
         log.debug("REST request to search Brands starting with : {}", name);
-        return brandRepository.findByNameLike(name);
+        return brandService.search(name);
     }
 
     /**
      * DELETE  /brands/:id -> delete the "id" brand.
+     * @return 
      */
     @RequestMapping(value = "/brands/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void delete(@PathVariable String id) {
+    public ResponseEntity<Boolean> delete(@PathVariable String id) {
         log.debug("REST request to delete Brand : {}", id);
-        brandRepository.delete(id);
+        boolean delete = brandService.delete(id);
+        if(!delete){
+        	return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+        }
+        else {
+        	return new ResponseEntity<Boolean>(HttpStatus.OK);
+        }
     }
 }

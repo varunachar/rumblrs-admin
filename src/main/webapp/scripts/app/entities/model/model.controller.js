@@ -42,7 +42,7 @@ angular.module('rumblrsadminApp')
             }, function(result) {
                 var modalDeleteInstance = $modal.open({
                     animation: true,
-                    templateUrl: 'scripts/app/entities/model/model-delete.html',
+                    templateUrl: 'model-delete.html',
                     controller: 'ModalDeleteInstanceCtrl',
                     resolve: {
                         items: function() {
@@ -59,17 +59,5 @@ angular.module('rumblrsadminApp')
 
         $scope.refresh = function() {
             $scope.loadAll();
-            $scope.clear();
-        };
-
-        $scope.clear = function() {
-            $scope.model = {
-                name: null,
-                engineCapacity: null,
-                brandId: null,
-                id: null
-            };
-            $scope.editForm.$setPristine();
-            $scope.editForm.$setUntouched();
         };
     });

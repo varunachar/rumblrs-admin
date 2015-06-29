@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('rumblrsadminApp', ['LocalStorageModule',
-    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster', 'infinite-scroll', 'ui.bootstrap'
+    'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster',
+    'infinite-scroll', 'ui.bootstrap',
+    'ui-notification'
 ])
 
 .run(function($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {
@@ -70,7 +72,9 @@ angular.module('rumblrsadminApp', ['LocalStorageModule',
             }
         };
     })
-    .config(function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, httpRequestInterceptorCacheBusterProvider) {
+    .config(function($stateProvider, $urlRouterProvider, $httpProvider,
+        $locationProvider, httpRequestInterceptorCacheBusterProvider,
+        NotificationProvider) {
 
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
@@ -98,5 +102,13 @@ angular.module('rumblrsadminApp', ['LocalStorageModule',
 
         $httpProvider.interceptors.push('authInterceptor');
         $httpProvider.interceptors.push('authExpiredInterceptor');
-
+        NotificationProvider.setOptions({
+            delay: 10000,
+            startTop: 20,
+            startRight: 10,
+            verticalSpacing: 20,
+            horizontalSpacing: 20,
+            positionX: 'right',
+            positionY: 'top'
+        })
     });

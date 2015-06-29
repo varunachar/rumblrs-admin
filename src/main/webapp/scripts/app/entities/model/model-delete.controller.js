@@ -1,4 +1,4 @@
-angular.module('rumblrsadminApp').controller('ModalDeleteInstanceCtrl', function($scope, $modalDeleteInstance, items) {
+angular.module('rumblrsadminApp').controller('ModalDeleteInstanceCtrl', function($scope, $modalInstance, Model, items) {
 
     $scope.model = items;
 
@@ -8,11 +8,11 @@ angular.module('rumblrsadminApp').controller('ModalDeleteInstanceCtrl', function
                 id: id
             },
             function() {
-                $modalDeleteInstance.close();
+                $modalInstance.close();
             });
     };
 
     $scope.cancel = function() {
-        $modalDeleteInstance.dismiss('cancel');
+        $modalInstance.dismiss('cancel');
     };
 });

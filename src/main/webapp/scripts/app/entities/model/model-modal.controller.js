@@ -3,11 +3,13 @@ angular.module('rumblrsadminApp').controller('ModalInstanceCtrl', function($scop
     $scope.model = items;
     $scope.brands = [];
 
-    Brand.get({
-        id: items.brandId
-    }, function(result) {
-        $scope.model.brandName = result.name;
-    });
+    if (items) {
+        Brand.get({
+            id: items.brandId
+        }, function(result) {
+            $scope.model.brandName = result.name;
+        });
+    }
 
     $scope.save = function() {
         if ($scope.model.id != null) {
