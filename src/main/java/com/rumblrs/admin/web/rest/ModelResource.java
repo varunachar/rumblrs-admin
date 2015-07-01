@@ -100,4 +100,12 @@ public class ModelResource {
         log.debug("REST request to delete Model : {}", id);
         modelRepository.delete(id);
     }
+    
+    @RequestMapping(value="/models/search", 
+    		method=RequestMethod.GET, 
+    		produces=MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<Model> search(@RequestParam String name) {
+    	return modelRepository.findByBrandNameOrNameLikeIgnoreCase(name);
+    }
 }

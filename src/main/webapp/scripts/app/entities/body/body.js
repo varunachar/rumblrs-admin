@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rumblrsadminApp')
-    .config(function ($stateProvider) {
+    .config(function($stateProvider) {
         $stateProvider
             .state('body', {
                 parent: 'entity',
@@ -12,12 +12,11 @@ angular.module('rumblrsadminApp')
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'scripts/app/entities/body/bodys.html',
+                        templateUrl: 'scripts/app/entities/body/bodies.html',
                         controller: 'BodyController'
                     }
                 },
-                resolve: {
-                }
+                resolve: {}
             })
             .state('bodyDetail', {
                 parent: 'entity',
@@ -32,7 +31,6 @@ angular.module('rumblrsadminApp')
                         controller: 'BodyDetailController'
                     }
                 },
-                resolve: {
-                }
+                resolve: {}
             });
     });

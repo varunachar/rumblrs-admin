@@ -26,11 +26,11 @@ import com.rumblrs.admin.repository.ModelRepository;
 public class BrandService {
 
 	@Inject
-    private BrandRepository brandRepository;
-	
+	private BrandRepository brandRepository;
+
 	@Inject
 	private ModelRepository modelRepository;
-	
+
 	public void save(Brand brand) {
 		brandRepository.save(brand);
 	}
@@ -47,9 +47,16 @@ public class BrandService {
 		return brandRepository.findByNameLikeIgnoreCase(name);
 	}
 
+	/**
+	 * Checks to see if any models exist with this brand before attempting to
+	 * delete
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public boolean delete(String id) {
 		List<Model> models = modelRepository.findByBrandId(id);
-		if(CollectionUtils.isEmpty(models)) {
+		if (CollectionUtils.isEmpty(models)) {
 			brandRepository.delete(id);
 			return true;
 		}

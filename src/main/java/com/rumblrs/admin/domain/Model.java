@@ -14,81 +14,134 @@ import java.util.Objects;
 @Document(collection = "MODEL")
 public class Model implements Serializable {
 
-    @Id
-    private String id;
+	@Id
+	private String id;
 
-    @NotNull
-    @Field("name")
-    private String name;
+	@NotNull
+	@Field("name")
+	private String name;
 
-    @NotNull
-    @Field("engine_capacity")
-    private Integer engineCapacity;
+	@NotNull
+	@Field("engine_capacity")
+	private Integer engineCapacity;
 
-    @NotNull
-    @Field("brand_id")
-    private String brandId;
+	@NotNull
+	@Field("brand_id")
+	private String brandId;
 
-    public String getId() {
-        return id;
-    }
+	@NotNull
+	@Field("brand_name")
+	private String brandName;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	/**
+	 * Added to extract brandName from the submitted data
+	 */
+	private Brand brand;
+	
+	private Body body;
 
-    public String getName() {
-        return name;
-    }
+	@Field("body_id")
+	private String bodyId;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public Integer getEngineCapacity() {
-        return engineCapacity;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setEngineCapacity(Integer engineCapacity) {
-        this.engineCapacity = engineCapacity;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getBrandId() {
-        return brandId;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setBrandId(String brandId) {
-        this.brandId = brandId;
-    }
+	public Integer getEngineCapacity() {
+		return engineCapacity;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+	public void setEngineCapacity(Integer engineCapacity) {
+		this.engineCapacity = engineCapacity;
+	}
 
-        Model model = (Model) o;
+	public String getBrandId() {
+		return brandId;
+	}
 
-        if ( ! Objects.equals(id, model.id)) return false;
+	public void setBrandId(String brandId) {
+		this.brandId = brandId;
+	}
 
-        return true;
-    }
+	public String getBrandName() {
+		return brandName;
+	}
 
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
 
-    @Override
-    public String toString() {
-        return "Model{" +
-                "id=" + id +
-                ", name='" + name + "'" +
-                ", engineCapacity='" + engineCapacity + "'" +
-                ", brandId='" + brandId + "'" +
-                '}';
-    }
+	public Brand getBrand() {
+		if (brand == null) {
+			Brand brand = new Brand();
+			brand.setId(brandId);
+			brand.setName(brandName);
+			this.brand = brand;
+		}
+		return brand;
+	}
+
+	public void setBrand(Brand brand) {
+		this.brand = brand;
+		this.brandId = brand.getId();
+		this.brandName = brand.getName();
+	}
+
+	public Body getBody() {
+		return body;
+	}
+
+	public void setBody(Body body) {
+		this.body = body;
+		this.bodyId = body.getId();
+	}
+
+	public String getBodyId() {
+		return bodyId;
+	}
+
+	public void setBodyId(String bodyId) {
+		this.bodyId = bodyId;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		Model model = (Model) o;
+
+		if (!Objects.equals(id, model.id))
+			return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(id);
+	}
+
+	@Override
+	public String toString() {
+		return "Model{" + "id=" + id + ", name='" + name + "'"
+				+ ", engineCapacity='" + engineCapacity + "'" + ", brandId='"
+				+ brandId + "'" + '}';
+	}
 }

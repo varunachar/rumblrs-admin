@@ -1,50 +1,46 @@
 <div>
 
-    <h2>Models</h2>
+    <h2>Body Types</h2>
 
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <button class="btn btn-primary" ng-click="open()">
-                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Model</span>
+                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new Body</span>
                 </button>
             </div>
         </div>
     </div>
-    
-    <div ng-include="'scripts/app/entities/model/model-modal.html'"></div>
-    <div ng-include="'scripts/app/entities/model/model-delete.html'"></div>
+
+    <div ng-include="'scripts/app/entities/body/body-modal.html'"></div>
+    <div ng-include="'scripts/app/entities/body/body-delete.html'"></div>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Engine Capacity</th>
-                    <th>Brand Name</th>
+                    <th>Type</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="model in models">
-                    <td><a ui-sref="modelDetail({id:model.id})">{{model.id}}</a></td>
-                    <td>{{model.name}}</td>
-                    <td>{{model.engineCapacity}}</td>
-                    <td>{{model.brandName}}</td>
+                <tr ng-repeat="body in bodies">
+                    <td><a ui-sref="bodyDetail({id:body.id})">{{body.id}}</a></td>
+                    <td>{{body.type}}</td>
                     <td>
                         <button type="submit"
-                                ui-sref="modelDetail({id:model.id})"
+                                ui-sref="bodyDetail({id:body.id})"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
                         </button>
                         <button type="submit"
-                                ng-click="edit(model.id)"
+                                ng-click="edit(body.id)"
                                 class="btn btn-primary btn-sm">
                             <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
                         </button>
                         <button type="submit"
-                                ng-click="delete(model.id)"
+                                ng-click="delete(body.id)"
                                 class="btn btn-danger btn-sm">
                             <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
                         </button>

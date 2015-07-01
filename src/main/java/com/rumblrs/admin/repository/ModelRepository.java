@@ -12,5 +12,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 public interface ModelRepository extends MongoRepository<Model,String> {
 
 	List<Model> findByBrandId(String id);
+	
+	List<Model> findByBodyId(String id);
+
+	List<Model> findByBrandNameOrNameLikeIgnoreCase(String name);
 
 }

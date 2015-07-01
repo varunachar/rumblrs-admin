@@ -23,6 +23,9 @@ public class Bike implements Serializable {
     @Field("brand")
     private String brand;
 
+    /**
+     * The model name
+     */
     @NotNull
     @Field("name")
     private String name;
@@ -30,7 +33,17 @@ public class Bike implements Serializable {
     @NotNull
     @Field("engine_capacity")
     private Integer engineCapacity;
-
+    
+    @NotNull
+    @Field("model_id")
+    private String modelId;
+    
+    @NotNull
+    @Field("brand_id")
+    private String brandId;
+    
+    private Model model;
+    
     @NotNull
     @Field("year_of_manufacture")
     private Integer yearOfManufacture;
@@ -50,14 +63,14 @@ public class Bike implements Serializable {
     @NotNull
     @Field("price")
     private Integer price;
+    
+    @NotNull
+    @Field("purchasePrice")
+    private Integer purchasePrice;
 
     @NotNull
     @Field("score")
     private BigDecimal score;
-
-    @NotNull
-    @Field("type")
-    private Integer type;
 
     @Field("thumbnail")
     private String thumbnail;
@@ -81,17 +94,32 @@ public class Bike implements Serializable {
     }
 
     public String getBrand() {
-        return brand;
-    }
+		return brand;
+	}
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
 
-    public String getName() {
+	public String getBrandId() {
+		return brandId;
+	}
+
+	public void setBrandId(String brandId) {
+		this.brandId = brandId;
+	}
+
+	/**
+	 * @return model name
+	 */
+	public String getName() {
         return name;
     }
 
+	/**
+	 * Set model name
+	 * @param name
+	 */
     public void setName(String name) {
         this.name = name;
     }
@@ -104,7 +132,27 @@ public class Bike implements Serializable {
         this.engineCapacity = engineCapacity;
     }
 
-    public Integer getYearOfManufacture() {
+    public String getModelId() {
+		return modelId;
+	}
+
+	public void setModelId(String modelId) {
+		this.modelId = modelId;
+	}
+
+	public Model getModel() {
+		return model;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+		this.brand = model.getBrandName();
+		this.brandId = model.getBrandId();
+		this.modelId = model.getId();
+		this.engineCapacity = model.getEngineCapacity();
+	}
+
+	public Integer getYearOfManufacture() {
         return yearOfManufacture;
     }
 
@@ -144,20 +192,20 @@ public class Bike implements Serializable {
         this.price = price;
     }
 
-    public BigDecimal getScore() {
+    public Integer getPurchasePrice() {
+		return purchasePrice;
+	}
+
+	public void setPurchasePrice(Integer purchasePrice) {
+		this.purchasePrice = purchasePrice;
+	}
+
+	public BigDecimal getScore() {
         return score;
     }
 
     public void setScore(BigDecimal score) {
         this.score = score;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
     }
 
     public String getThumbnail() {
@@ -226,7 +274,6 @@ public class Bike implements Serializable {
                 ", owners='" + owners + "'" +
                 ", price='" + price + "'" +
                 ", score='" + score + "'" +
-                ", type='" + type + "'" +
                 ", thumbnail='" + thumbnail + "'" +
                 ", reserved='" + reserved + "'" +
                 ", sold='" + sold + "'" +

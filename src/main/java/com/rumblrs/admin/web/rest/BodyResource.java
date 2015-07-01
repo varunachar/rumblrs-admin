@@ -3,6 +3,8 @@ package com.rumblrs.admin.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.rumblrs.admin.domain.Body;
 import com.rumblrs.admin.repository.BodyRepository;
+import com.rumblrs.admin.web.rest.service.BodyService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -27,12 +30,12 @@ public class BodyResource {
     private final Logger log = LoggerFactory.getLogger(BodyResource.class);
 
     @Inject
-    private BodyRepository bodyRepository;
+    private BodyService bodyService;
 
     /**
-     * POST  /bodys -> Create a new body.
+     * POST  /bodies -> Create a new body.
      */
-    @RequestMapping(value = "/bodys",
+    @RequestMapping(value = "/bodies",
             method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -41,14 +44,14 @@ public class BodyResource {
         if (body.getId() != null) {
             return ResponseEntity.badRequest().header("Failure", "A new body cannot already have an ID").build();
         }
-        bodyRepository.save(body);
-        return ResponseEntity.created(new URI("/api/bodys/" + body.getId())).build();
+        bodyService.save(body);
+        return ResponseEntity.created(new URI("/api/bodies/" + body.getId())).build();
     }
 
     /**
-     * PUT  /bodys -> Updates an existing body.
+     * PUT  /bodies -> Updates an existing body.
      */
-    @RequestMapping(value = "/bodys",
+    @RequestMapping(value = "/bodies",
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -57,32 +60,32 @@ public class BodyResource {
         if (body.getId() == null) {
             return create(body);
         }
-        bodyRepository.save(body);
+        bodyService.save(body);
         return ResponseEntity.ok().build();
     }
 
     /**
-     * GET  /bodys -> get all the bodys.
+     * GET  /bodies -> get all the bodies.
      */
-    @RequestMapping(value = "/bodys",
+    @RequestMapping(value = "/bodies",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Body> getAll() {
-        log.debug("REST request to get all Bodys");
-        return bodyRepository.findAll();
+        log.debug("REST request to get all Bodies");
+        return bodyService.findAll();
     }
 
     /**
-     * GET  /bodys/:id -> get the "id" body.
+     * GET  /bodies/:id -> get the "id" body.
      */
-    @RequestMapping(value = "/bodys/{id}",
+    @RequestMapping(value = "/bodies/{id}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<Body> get(@PathVariable String id) {
         log.debug("REST request to get Body : {}", id);
-        return Optional.ofNullable(bodyRepository.findOne(id))
+        return Optional.ofNullable(bodyService.findOne(id))
             .map(body -> new ResponseEntity<>(
                 body,
                 HttpStatus.OK))
@@ -90,14 +93,31 @@ public class BodyResource {
     }
 
     /**
-     * DELETE  /bodys/:id -> delete the "id" body.
+     * DELETE  /bodies/:id -> delete the "id" body.
+     * @return 
      */
-    @RequestMapping(value = "/bodys/{id}",
+    @RequestMapping(value = "/bodies/{id}",
             method = RequestMethod.DELETE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public void delete(@PathVariable String id) {
+    public ResponseEntity<Boolean> delete(@PathVariable String id) {
         log.debug("REST request to delete Body : {}", id);
-        bodyRepository.delete(id);
+        boolean deleted = bodyService.delete(id);
+        if(deleted) {
+        	return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.PRECONDITION_FAILED);
+    }
+    
+    /**
+     * DELETE /bodies/search?type=:type -> search for body of type
+     * @param type
+     * @return
+     */
+    @RequestMapping(value="/bodies/search",
+    		method=RequestMethod.GET,
+    		produces=MediaType.APPLICATION_JSON_VALUE)
+    public List<Body> search(@RequestParam String type){
+    	return bodyService.search(type);
     }
 }

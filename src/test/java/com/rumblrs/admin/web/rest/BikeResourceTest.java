@@ -63,8 +63,6 @@ public class BikeResourceTest {
     private static final BigDecimal DEFAULT_SCORE = new BigDecimal(0);
     private static final BigDecimal UPDATED_SCORE = new BigDecimal(1);
 
-    private static final Integer DEFAULT_TYPE = 0;
-    private static final Integer UPDATED_TYPE = 1;
     private static final String DEFAULT_THUMBNAIL = "SAMPLE_TEXT";
     private static final String UPDATED_THUMBNAIL = "UPDATED_TEXT";
 
@@ -74,7 +72,6 @@ public class BikeResourceTest {
     private static final Boolean DEFAULT_SOLD = false;
     private static final Boolean UPDATED_SOLD = true;
     private static final String DEFAULT_BIKE_ID = "SAMPLE_TEXT";
-    private static final String UPDATED_BIKE_ID = "UPDATED_TEXT";
     private static final String DEFAULT_DETAIL_ID = "SAMPLE_TEXT";
     private static final String UPDATED_DETAIL_ID = "UPDATED_TEXT";
 
@@ -106,7 +103,6 @@ public class BikeResourceTest {
         bike.setOwners(DEFAULT_OWNERS);
         bike.setPrice(DEFAULT_PRICE);
         bike.setScore(DEFAULT_SCORE);
-        bike.setType(DEFAULT_TYPE);
         bike.setThumbnail(DEFAULT_THUMBNAIL);
         bike.setReserved(DEFAULT_RESERVED);
         bike.setSold(DEFAULT_SOLD);
@@ -136,7 +132,6 @@ public class BikeResourceTest {
         assertThat(testBike.getOwners()).isEqualTo(DEFAULT_OWNERS);
         assertThat(testBike.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testBike.getScore()).isEqualTo(DEFAULT_SCORE);
-        assertThat(testBike.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testBike.getThumbnail()).isEqualTo(DEFAULT_THUMBNAIL);
         assertThat(testBike.getReserved()).isEqualTo(DEFAULT_RESERVED);
         assertThat(testBike.getSold()).isEqualTo(DEFAULT_SOLD);
@@ -310,7 +305,6 @@ public class BikeResourceTest {
         // Validate the database is empty
         assertThat(bikeRepository.findAll()).hasSize(0);
         // set the field null
-        bike.setType(null);
 
         // Create the Bike, which fails.
         restBikeMockMvc.perform(post("/api/bikes")
@@ -377,7 +371,6 @@ public class BikeResourceTest {
                 .andExpect(jsonPath("$.[*].owners").value(hasItem(DEFAULT_OWNERS)))
                 .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE)))
                 .andExpect(jsonPath("$.[*].score").value(hasItem(DEFAULT_SCORE.intValue())))
-                .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE)))
                 .andExpect(jsonPath("$.[*].thumbnail").value(hasItem(DEFAULT_THUMBNAIL.toString())))
                 .andExpect(jsonPath("$.[*].reserved").value(hasItem(DEFAULT_RESERVED.booleanValue())))
                 .andExpect(jsonPath("$.[*].sold").value(hasItem(DEFAULT_SOLD.booleanValue())))
@@ -404,7 +397,6 @@ public class BikeResourceTest {
             .andExpect(jsonPath("$.owners").value(DEFAULT_OWNERS))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE))
             .andExpect(jsonPath("$.score").value(DEFAULT_SCORE.intValue()))
-            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE))
             .andExpect(jsonPath("$.thumbnail").value(DEFAULT_THUMBNAIL.toString()))
             .andExpect(jsonPath("$.reserved").value(DEFAULT_RESERVED.booleanValue()))
             .andExpect(jsonPath("$.sold").value(DEFAULT_SOLD.booleanValue()))
@@ -436,7 +428,6 @@ public class BikeResourceTest {
         bike.setOwners(UPDATED_OWNERS);
         bike.setPrice(UPDATED_PRICE);
         bike.setScore(UPDATED_SCORE);
-        bike.setType(UPDATED_TYPE);
         bike.setThumbnail(UPDATED_THUMBNAIL);
         bike.setReserved(UPDATED_RESERVED);
         bike.setSold(UPDATED_SOLD);
@@ -459,7 +450,6 @@ public class BikeResourceTest {
         assertThat(testBike.getOwners()).isEqualTo(UPDATED_OWNERS);
         assertThat(testBike.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testBike.getScore()).isEqualTo(UPDATED_SCORE);
-        assertThat(testBike.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testBike.getThumbnail()).isEqualTo(UPDATED_THUMBNAIL);
         assertThat(testBike.getReserved()).isEqualTo(UPDATED_RESERVED);
         assertThat(testBike.getSold()).isEqualTo(UPDATED_SOLD);

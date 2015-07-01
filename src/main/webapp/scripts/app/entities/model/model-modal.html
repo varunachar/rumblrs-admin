@@ -42,11 +42,23 @@
             </div>
             <div class="form-group">
                 <label>Brand</label>
-                <input type="text" class="form-control" typeahead="brand.name as brand.name for brand in getBrands($viewValue) | filter:$viewValue | limitTo:5" typeahead-on-select="itemSelected($item, $model, $label)" name="brandId" ng-model="model.brandName" required>
+                <input type="text" class="form-control" typeahead="brand as brand.name for brand in getBrands($viewValue) | filter:$viewValue | limitTo:5" name="brand" ng-model="model.brand" required>
 
-                <div ng-show="editForm.brandId.$invalid">
+                <div ng-show="editForm.brand.$invalid">
                     <p class="help-block"
-                       ng-show="editForm.brandId.$error.required">
+                       ng-show="editForm.brand.$error.required">
+                        This field is required.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Body</label>
+                <select type="text" class="form-control" ng-options="body as body.type for body in bodies" name="body" ng-model="model.body" required></select>
+
+                <div ng-show="editForm.body.$invalid">
+                    <p class="help-block"
+                       ng-show="editForm.body.$error.required">
                         This field is required.
                     </p>
                 </div>

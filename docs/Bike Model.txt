@@ -1,10 +1,13 @@
-Brand
-Name
-Engine Capacity
+brand name
+brand id - for efficient querying
+model name - for efficient querying
+model id
+Engine Capacity - for efficient querying
 Year of manufacture
 location
 km driven
 previous owners
+purchase price
 price
     bike price
     commission
