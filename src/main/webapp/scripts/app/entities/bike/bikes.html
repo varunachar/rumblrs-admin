@@ -12,220 +12,20 @@
         </div>
     </div>
 
-    <div class="modal fade" id="viewBikeModal" tabindex="-1" role="dialog" aria-labelledby="myBikeLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                            ng-click="clear()">&times;</button>
-                    <h4 class="modal-title" id="myBikeLabel">Bike Details</h4>
-                </div>
-                <div class="modal-body">
-                    <h2>{{bikeDetail.owner}}'s {{bike.brand}} {{bike.name}} {{bike.engineCapacity}}cc</h2>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Field</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <span>Brand</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.brand}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Name</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.name}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Engine Capacity</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.engineCapacity}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Year Of Manufacture</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.yearOfManufacture}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Location</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.location}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Kms</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.kms}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Owners</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.owners}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Price</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.price}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Score</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.score}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Type</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.type}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Thumbnail</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.thumbnail}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Reserved</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.reserved}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Sold</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bike.sold}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Owner</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.owner}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Features</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.features}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Documents</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.documents}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Report</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.report}}" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span>Performance</span>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="input-sm form-control" value="{{bikeDetail.performance}}" readonly>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
-                        </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="deleteBikeConfirmation">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form name="deleteForm" ng-submit="confirmDelete(bike.id)">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                                ng-click="clear()">&times;</button>
-                        <h4 class="modal-title">Confirm delete operation</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete this Bike?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
-                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
-                        </button>
-                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>Delete</span>
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    <div ng-include="'scripts/app/entities/bike/bike-modal.html'"></div>
+    <div ng-include="'scripts/app/entities/bike/bike-delete.html'"></div>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Brand</th>
                     <th>Name</th>
-                    <th>CCs</th>
                     <th>Year</th>
                     <th>Location</th>
                     <th>Kms</th>
                     <th>Owners</th>
                     <th>Price</th>
+                    <th>Purchase Price</th>
                     <th>Score</th>
                     <th>Reserved</th>
                     <th>Sold</th>
@@ -234,20 +34,19 @@
             </thead>
             <tbody infinite-scroll="loadPage(page + 1)" infinite-scroll-disabled="links['last'] == page">
                 <tr ng-repeat="bike in bikes">
-                    <td>{{bike.brand}}</td>
-                    <td>{{bike.name}}</td>
-                    <td>{{bike.engineCapacity}}</td>
+                    <td>{{bike.brand}} {{bike.name}} {{bike.engineCapacity}}cc</td>
                     <td>{{bike.yearOfManufacture}}</td>
                     <td>{{bike.location}}</td>
                     <td>{{bike.kms}}</td>
                     <td>{{bike.owners}}</td>
                     <td>{{bike.price}}</td>
+                    <td>{{bike.purchasePrice}}</td>
                     <td>{{bike.score}}</td>
                     <td>{{bike.reserved}}</td>
                     <td>{{bike.sold}}</td>
                     <td>
                         <button type="submit"
-                                ng-click="showDetails(bike.id)"
+                                ng-click="view(bike.id)"
                                 class="btn btn-info btn-sm">
                             <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
                         </button>

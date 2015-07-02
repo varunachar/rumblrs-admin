@@ -15,6 +15,6 @@ public interface ModelRepository extends MongoRepository<Model,String> {
 	
 	List<Model> findByBodyId(String id);
 
-	List<Model> findByBrandNameOrNameLikeIgnoreCase(String name);
+	List<Model> findByNameLikeIgnoreCase(String name);
 
 }

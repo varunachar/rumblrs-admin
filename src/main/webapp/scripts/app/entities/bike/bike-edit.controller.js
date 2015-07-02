@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('rumblrsadminApp')
-    .controller('BikeEditController', function($scope, $stateParams, $state, Bike) {
+    .controller('BikeEditController', function($scope, $stateParams, $state, Bike, Model) {
         $scope.bike = {};
         $scope.bikeDetail = {};
+        $scope.models = [];
         $scope.load = function(id) {
             Bike.get({
                 id: id
@@ -14,6 +15,10 @@ angular.module('rumblrsadminApp')
         };
 
         $scope.save = function() {
+            $scope.bike.brand = $scope.bike.model.brandName;
+            $scope.bike.name = $scope.bike.model.name;
+            $scope.bike.engineCapacity = $scope.bike.model.engineCapacity;
+            $scope.bike.brandId = $scope.bike.model.brandId;
             if ($scope.bike.id != null) {
                 Bike.update({
                         bike: $scope.bike,
@@ -34,7 +39,24 @@ angular.module('rumblrsadminApp')
             }
         };
 
+        $scope.getModels = function(value) {
+            Model.search({
+                name: value
+            }, function(result) {
+                $scope.models = result;
+            });
+            return $scope.models;
+        };
+
+        $scope.formatValue = function(value) {
+            if (value) {
+                return value.brandName + ' - ' + value.name + ' ' + value.engineCapacity + 'cc';
+            }
+        };
+
         if ($stateParams.id) {
             $scope.load($stateParams.id);
         }
+
+
     });

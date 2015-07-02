@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rumblrsadminApp')
-    .controller('BikeController', function($scope, Bike, ParseLinks) {
+    .controller('BikeController', function($scope, Bike, ParseLinks, $modal) {
         $scope.bikes = [];
         $scope.page = 1;
         $scope.loadAll = function() {
@@ -25,72 +25,52 @@ angular.module('rumblrsadminApp')
             $scope.loadAll();
         };
 
-        $scope.showDetails = function(id) {
+        $scope.view = function(id) {
             Bike.get({
                 id: id
             }, function(result) {
-                $scope.bike = result.bike;
-                $scope.bikeDetail = result.bikeDetail;
-                var viewBikeModal = $('#viewBikeModal');
-                viewBikeModal.on('hide.bs.modal', function() {
-                    $scope.clear();
+                var modalInstance = $modal.open({
+                    animation: true,
+                    templateUrl: 'bike-modal.html',
+                    controller: 'BikeModalInstanceCtrl',
+                    resolve: {
+                        items: function() {
+                            return result;
+                        }
+                    }
                 });
-                viewBikeModal.modal('show');
+                modalInstance.result.then(function() {
+                    $scope.refresh();
+                });
             });
         };
+
 
         $scope.delete = function(id) {
             Bike.get({
                 id: id
             }, function(result) {
                 $scope.bike = result.bike;
-                $('#deleteBikeConfirmation').modal('show');
-            });
-        };
 
-        $scope.confirmDelete = function(id) {
-            Bike.delete({
-                    id: id
-                },
-                function() {
-                    $scope.reset();
-                    $('#deleteBikeConfirmation').modal('hide');
-                    $scope.clear();
+                var modalInstance = $modal.open({
+                    animation: true,
+                    templateUrl: 'bike-delete.html',
+                    controller: 'BikeDeleteInstanceCtrl',
+                    resolve: {
+                        items: function() {
+                            return result;
+                        }
+                    }
                 });
+                modalInstance.result.then(function() {
+                    $scope.refresh();
+                });
+            });
         };
 
         $scope.refresh = function() {
             $scope.reset();
-            $('#viewBikeModal').modal('hide');
-            $scope.clear();
         };
 
-        $scope.clear = function() {
-            $scope.bike = {
-                brand: null,
-                name: null,
-                engineCapacity: null,
-                yearOfManufacture: null,
-                location: null,
-                kms: null,
-                owners: null,
-                price: null,
-                score: null,
-                type: null,
-                thumbnail: null,
-                reserved: null,
-                sold: null,
-                detailId: null,
-                id: null
-            };
-            $scope.bikeDetail = {
-                owner: null,
-                features: null,
-                documents: null,
-                report: null,
-                performance: null,
-                id: null
-            };
-        };
         $scope.loadAll();
     });

@@ -1,0 +1,1 @@
+Fix for jQuery dependency on form directive - http://blog.yodersolutions.com/bootstrap-form-validation-done-right-in-angularjs/

@@ -106,6 +106,6 @@ public class ModelResource {
     		produces=MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public List<Model> search(@RequestParam String name) {
-    	return modelRepository.findByBrandNameOrNameLikeIgnoreCase(name);
+    	return modelRepository.findByNameLikeIgnoreCase(name);
     }
 }

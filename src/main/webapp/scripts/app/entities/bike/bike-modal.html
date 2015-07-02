@@ -1,0 +1,155 @@
+<script type="text/ng-template" id="bike-modal.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="cancel()">&times;</button>
+        <h4 class="modal-title" id="myBikeLabel">Bike Details</h4>
+    </div>
+    <div class="modal-body">
+        <h2>{{bikeDetail.owner}}'s {{bike.brand}} {{bike.name}} {{bike.engineCapacity}}cc</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span>Name</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.brand}} - {{bike.name}} - {{bike.engineCapacity}}cc" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Year Of Manufacture</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.yearOfManufacture}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Location</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.location}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Kms</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.kms}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>No of Owners</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.owners}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Price</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.price}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Purchase Price</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.purchasePrice}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Score</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.score}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Thumbnail</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.thumbnail}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Reserved</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.reserved}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Sold</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bike.sold}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Owner</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bikeDetail.owner}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Features</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bikeDetail.features}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Documents</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bikeDetail.documents}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Report</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bikeDetail.report}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Performance</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{bikeDetail.performance}}" readonly>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">
+                <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+            </button>
+    </div>
+</script>
