@@ -9,10 +9,10 @@
     </appender>
 
 <!-- The FILE and ASYNC appenders are here as examples for a production configuration -->
-<!--
+
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/logFile.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -25,7 +25,7 @@
         <queueSize>512</queueSize>
         <appender-ref ref="FILE"/>
     </appender>
--->
+
 
     <logger name="com.rumblrs.admin" level="${logback.loglevel}"/>
 
@@ -59,7 +59,7 @@
     </contextListener>
 
     <root level="${logback.loglevel}">
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
     </root>
 
 </configuration>

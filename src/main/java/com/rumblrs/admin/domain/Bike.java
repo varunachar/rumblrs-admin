@@ -7,11 +7,12 @@ import java.util.Objects;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A Bike.
+ * A Seller's Bike details. Brand, Model info are stored here for performance optimizations.
  */
 @Document(collection = "BIKE")
 public class Bike implements Serializable {
@@ -42,15 +43,12 @@ public class Bike implements Serializable {
     @Field("brand_id")
     private String brandId;
     
+    @Transient
     private Model model;
     
     @NotNull
     @Field("year_of_manufacture")
     private Integer yearOfManufacture;
-
-    @NotNull
-    @Field("location")
-    private String location;
 
     @NotNull
     @Field("kms")
@@ -70,12 +68,15 @@ public class Bike implements Serializable {
 
     @NotNull
     @Field("score")
-    private BigDecimal score;
+    private BigDecimal score = new BigDecimal(0);
 
     @Field("thumbnail")
     private String thumbnail;
+    
+    @Field("pictures")
+    private String[] pictures;
 
-    @Field("reserved")
+	@Field("reserved")
     private Boolean reserved;
 
     @Field("sold")
@@ -84,6 +85,12 @@ public class Bike implements Serializable {
     @NotNull
     @Field("detail_id")
     private String detailId;
+    
+    /**
+     * Added for performance improvement
+     */
+    @Field("location")
+    private String location;
 
     public String getId() {
         return id;
@@ -160,14 +167,6 @@ public class Bike implements Serializable {
         this.yearOfManufacture = yearOfManufacture;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public Integer getKms() {
         return kms;
     }
@@ -215,6 +214,14 @@ public class Bike implements Serializable {
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
+    
+    public String[] getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(String[] pictures) {
+		this.pictures = pictures;
+	}
 
     public Boolean getReserved() {
         return reserved;
@@ -240,7 +247,15 @@ public class Bike implements Serializable {
         this.detailId = detailId;
     }
 
-    @Override
+    public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -269,7 +284,6 @@ public class Bike implements Serializable {
                 ", name='" + name + "'" +
                 ", engineCapacity='" + engineCapacity + "'" +
                 ", yearOfManufacture='" + yearOfManufacture + "'" +
-                ", location='" + location + "'" +
                 ", kms='" + kms + "'" +
                 ", owners='" + owners + "'" +
                 ", price='" + price + "'" +

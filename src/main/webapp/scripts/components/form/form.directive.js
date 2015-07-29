@@ -7,7 +7,7 @@ angular.module('rumblrsadminApp')
             restrict: 'A',
             require: 'form',
             link: function(scope, element) {
-                element.find('.form-group').each(function() {
+                element.find('.form-group').forEach(function() {
                     var $formGroup = $(this);
                     var $inputs = $formGroup.find('input[ng-model],textarea[ng-model],select[ng-model]');
 

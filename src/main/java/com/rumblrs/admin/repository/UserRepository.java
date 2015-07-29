@@ -20,9 +20,11 @@ public interface UserRepository extends MongoRepository<User, String> {
     Optional<User> findOneByResetKey(String resetKey);
 
     Optional<User> findOneByEmail(String email);
+    
+    Optional<User> findOneByMobileNo(String mobileNo);
 
     Optional<User> findOneByLogin(String login);
-
+    
     @Override
     void delete(User t);
 

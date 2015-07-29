@@ -1,15 +1,17 @@
 package com.rumblrs.admin.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A Model.
+ * A Model of a Bike. Brand & Body details are stored here for query performance optimizations
  */
 @Document(collection = "MODEL")
 public class Model implements Serializable {
@@ -36,8 +38,10 @@ public class Model implements Serializable {
 	/**
 	 * Added to extract brandName from the submitted data
 	 */
+	@Transient
 	private Brand brand;
 	
+	@Transient
 	private Body body;
 
 	@Field("body_id")
@@ -100,6 +104,10 @@ public class Model implements Serializable {
 	}
 
 	public Body getBody() {
+		if(body==null) {
+			body = new Body();
+			body.setId(bodyId);
+		}
 		return body;
 	}
 
@@ -114,6 +122,10 @@ public class Model implements Serializable {
 
 	public void setBodyId(String bodyId) {
 		this.bodyId = bodyId;
+		if(body==null) {
+			body = new Body();
+			body.setId(bodyId);
+		}
 	}
 
 	@Override

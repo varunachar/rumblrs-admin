@@ -32,7 +32,7 @@ public abstract class AbstractAuditingEntity {
     private String lastModifiedBy;
 
     @LastModifiedDate
-    @Field("last_modified_date  ")
+    @Field("last_modified_date")
     @JsonIgnore
     private DateTime lastModifiedDate = DateTime.now();
 

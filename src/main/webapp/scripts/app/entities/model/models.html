@@ -19,19 +19,17 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Engine Capacity</th>
-                    <th>Brand Name</th>
+                    <th>Body</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="model in models">
-                    <td><a ui-sref="modelDetail({id:model.id})">{{model.id}}</a></td>
-                    <td>{{model.name}}</td>
+                    <td>{{model.brandName}} {{model.name}}</td>
                     <td>{{model.engineCapacity}}</td>
-                    <td>{{model.brandName}}</td>
+                    <td>{{model.body.type}}</td>
                     <td>
                         <button type="submit"
                                 ui-sref="modelDetail({id:model.id})"

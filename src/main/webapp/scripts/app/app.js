@@ -3,7 +3,7 @@
 angular.module('rumblrsadminApp', ['LocalStorageModule',
     'ngResource', 'ui.router', 'ngCookies', 'ngCacheBuster',
     'infinite-scroll', 'ui.bootstrap',
-    'ui-notification'
+    'ui-notification', 'ngFileUpload'
 ])
 
 .run(function($rootScope, $location, $window, $http, $state, Auth, Principal, ENV, VERSION) {
@@ -20,7 +20,7 @@ angular.module('rumblrsadminApp', ['LocalStorageModule',
     });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-        var titleKey = 'Axlery Admin';
+        var titleKey = 'Headlyt Admin';
 
         $rootScope.previousStateName = fromState.name;
         $rootScope.previousStateParams = fromParams;

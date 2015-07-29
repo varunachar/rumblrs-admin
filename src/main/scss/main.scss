@@ -4,8 +4,10 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+$body-bg-color: #fff;
+
 body {
-    background: #fafafa;
+    background: $body-bg-color;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -114,3 +116,35 @@ ul#strength {
 
 /* Angular UI bootstrap fix */
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.h-margin-top-20 {
+    margin-top: 20px;
+}
+
+.h-drop-box {
+    $background: #F8F8F8;
+    background: $background;
+    border: darken($background, 30%) 1px dashed;
+    text-align: center;
+    padding-top: 15px;
+    float: left;
+    height: 50px;
+    width: 100%;
+}
+
+.h-preview-section {
+    margin-top: 30px;
+    overflow-x: true;
+    .h-preview-img img {
+        margin-top: 20px;
+        padding-right: 10px;
+        max-width: 200px;
+        max-height: 100px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+.h-fix-label-width {
+    width: 150px;
+}

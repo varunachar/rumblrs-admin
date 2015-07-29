@@ -3,6 +3,7 @@ angular.module('rumblrsadminApp').controller('BikeModalInstanceCtrl',
 
         $scope.bike = items ? items.bike : {};
         $scope.bikeDetail = items ? items.bikeDetail : {};
+        $scope.owner = items ? items.owner : {};
 
         $scope.cancel = function() {
             $modalInstance.dismiss('cancel');

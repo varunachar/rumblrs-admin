@@ -25,7 +25,9 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     browserSync = require('browser-sync');
 
-var karma = require('gulp-karma')({configFile: 'src/test/javascript/karma.conf.js'});
+var karma = require('gulp-karma')({
+    configFile: 'src/test/javascript/karma.conf.js'
+});
 
 var yeoman = {
     app: 'src/main/webapp/',
@@ -38,7 +40,7 @@ var yeoman = {
     liveReloadPort: 35729
 };
 
-var endsWith = function (str, suffix) {
+var endsWith = function(str, suffix) {
     return str.indexOf('/', str.length - suffix.length) !== -1;
 };
 
@@ -46,18 +48,18 @@ var parseString = require('xml2js').parseString;
 var parseVersionFromPomXml = function() {
     var version;
     var pomXml = fs.readFileSync('pom.xml', 'utf8');
-    parseString(pomXml, function (err, result) {
+    parseString(pomXml, function(err, result) {
         version = result.project.version[0];
     });
     return version;
 };
 
-gulp.task('clean', function (cb) {
-  del([yeoman.dist], cb);
+gulp.task('clean', function(cb) {
+    del([yeoman.dist], cb);
 });
 
-gulp.task('clean:tmp', function (cb) {
-  del([yeoman.tmp], cb);
+gulp.task('clean:tmp', function(cb) {
+    del([yeoman.tmp], cb);
 });
 
 gulp.task('test', ['wiredep:test', 'ngconstant:dev'], function() {
@@ -65,43 +67,47 @@ gulp.task('test', ['wiredep:test', 'ngconstant:dev'], function() {
 });
 
 gulp.task('copy', function() {
-    return es.merge( 
-              gulp.src(yeoman.app + 'assets/**/*.{woff,svg,ttf,eot}').
-              pipe(flatten()).
-              pipe(gulp.dest(yeoman.dist + 'assets/fonts/')));
+    return es.merge(
+        gulp.src(yeoman.app + 'assets/**/*.{woff,svg,ttf,eot}').pipe(flatten()).pipe(gulp.dest(yeoman.dist + 'assets/fonts/')));
 });
 
 gulp.task('images', function() {
     return gulp.src(yeoman.app + 'assets/images/**').
-        pipe(imagemin({optimizationLevel: 5})).
-        pipe(gulp.dest(yeoman.dist + 'assets/images')).
-        pipe(browserSync.reload({stream: true}));
+    pipe(imagemin({
+        optimizationLevel: 5
+    })).
+    pipe(gulp.dest(yeoman.dist + 'assets/images')).
+    pipe(browserSync.reload({
+        stream: true
+    }));
 });
 
 gulp.task('compass', function() {
     return gulp.src(yeoman.scss + '**/*.scss').
-        pipe(compass({
-                project: __dirname,
-                sass: 'src/main/scss',
-                css: 'src/main/webapp/assets/styles',
-                generated_images: '.tmp/images/generated',
-                image: 'src/main/webapp/assets/images',
-                javascript: 'src/main/webapp/scripts',
-                font: 'src/main/webapp/assets/fonts',
-                import_path: 'src/main/webapp/bower_components',
-                relative: false
-        })).
-        pipe(gulp.dest(yeoman.tmp + 'styles'));
+    pipe(compass({
+        project: __dirname,
+        sass: 'src/main/scss',
+        css: 'src/main/webapp/assets/styles',
+        generated_images: '.tmp/images/generated',
+        image: 'src/main/webapp/assets/images',
+        javascript: 'src/main/webapp/scripts',
+        font: 'src/main/webapp/assets/fonts',
+        import_path: 'src/main/webapp/bower_components',
+        relative: false
+    })).
+    pipe(gulp.dest(yeoman.tmp + 'styles'));
 });
 
 gulp.task('styles', ['compass'], function() {
     return gulp.src(yeoman.app + 'assets/styles/**/*.css').
-        pipe(gulp.dest(yeoman.tmp)).
-        pipe(browserSync.reload({stream: true}));
+    pipe(gulp.dest(yeoman.tmp)).
+    pipe(browserSync.reload({
+        stream: true
+    }));
 });
 
 gulp.task('serve', function() {
-    runSequence('wiredep:test', 'wiredep:app', 'ngconstant:dev', 'compass', function () {
+    runSequence('wiredep:test', 'wiredep:app', 'ngconstant:dev', 'compass', function() {
         var baseUri = 'http://localhost:' + yeoman.apiPort;
         // Routes to proxy to the backend. Routes ending with a / will setup
         // a redirect so that if accessed without a trailing slash, will
@@ -117,9 +123,9 @@ gulp.task('serve', function() {
             '/oauth/token'
         ];
 
-        var requireTrailingSlash = proxyRoutes.filter(function (r) {
+        var requireTrailingSlash = proxyRoutes.filter(function(r) {
             return endsWith(r, '/');
-        }).map(function (r) {
+        }).map(function(r) {
             // Strip trailing slash so we can use the route to match requests
             // with non trailing slash
             return r.substr(0, r.length - 1);
@@ -127,8 +133,8 @@ gulp.task('serve', function() {
 
         var proxies = [
             // Ensure trailing slash in routes that require it
-            function (req, res, next) {
-                requireTrailingSlash.forEach(function(route){
+            function(req, res, next) {
+                requireTrailingSlash.forEach(function(route) {
                     if (url.parse(req.url).path === route) {
                         res.statusCode = 301;
                         res.setHeader('Location', route + '/');
@@ -140,7 +146,7 @@ gulp.task('serve', function() {
             }
         ].concat(
             // Build a list of proxies for routes: [route1_proxy, route2_proxy, ...]
-            proxyRoutes.map(function (r) {
+            proxyRoutes.map(function(r) {
                 var options = url.parse(baseUri + r);
                 options.route = r;
                 return proxy(options);
@@ -169,17 +175,17 @@ gulp.task('watch', function() {
 
 gulp.task('wiredep', ['wiredep:test', 'wiredep:app']);
 
-gulp.task('wiredep:app', function () {
+gulp.task('wiredep:app', function() {
     var s = gulp.src('src/main/webapp/index.html')
         .pipe(wiredep({
-            exclude: [/angular-i18n/, /swagger-ui/]
+            exclude: [/angular-i18n/, /swagger-ui/, /jquery/, '/bootstrap-sass/assets/javascripts/']
         }))
         .pipe(gulp.dest('src/main/webapp'));
 
     return es.merge(s, gulp.src('src/main/scss/main.scss')
         .pipe(wiredep({
             exclude: [
-                /angular-i18n/,  // localizations are loaded dynamically
+                /angular-i18n/, // localizations are loaded dynamically
                 /swagger-ui/,
                 'bower_components/bootstrap/' // Exclude Bootstrap LESS as we use bootstrap-sass
             ],
@@ -188,7 +194,7 @@ gulp.task('wiredep:app', function () {
         .pipe(gulp.dest('src/main/scss')));
 });
 
-gulp.task('wiredep:test', function () {
+gulp.task('wiredep:test', function() {
     return gulp.src('src/test/javascript/karma.conf.js')
         .pipe(wiredep({
             exclude: [/angular-i18n/, /swagger-ui/, /angular-scenario/],
@@ -209,63 +215,67 @@ gulp.task('wiredep:test', function () {
         .pipe(gulp.dest('src/test/javascript'));
 });
 
-gulp.task('build', function () {
+gulp.task('build', function() {
     runSequence('clean', 'copy', 'wiredep:app', 'ngconstant:prod', 'usemin');
 });
 
 gulp.task('usemin', function() {
-    runSequence('images', 'styles', function () {
+    runSequence('images', 'styles', function() {
         return gulp.src([yeoman.app + '**/*.html', '!' + yeoman.app + 'bower_components/**/*.html']).
-            pipe(usemin({
-                css: [
-                    prefix.apply(),
-                    minifyCss({root: 'src/main/webapp'}),  // Replace relative paths for static resources with absolute path with root
-                    'concat', // Needs to be present for minifyCss root option to work
-                    rev()
-                ],
-                html: [
-                    htmlmin({collapseWhitespace: true})
-                ],
-                js: [
-                    ngAnnotate(),
-                    uglify(),
-                    'concat',
-                    rev()
-                ]
-            })).
-            pipe(gulp.dest(yeoman.dist));
+        pipe(usemin({
+            css: [
+                prefix.apply(),
+                minifyCss({
+                    root: 'src/main/webapp'
+                }), // Replace relative paths for static resources with absolute path with root
+                'concat', // Needs to be present for minifyCss root option to work
+                rev()
+            ],
+            html: [
+                htmlmin({
+                    collapseWhitespace: true
+                })
+            ],
+            js: [
+                ngAnnotate(),
+                uglify(),
+                'concat',
+                rev()
+            ]
+        })).
+        pipe(gulp.dest(yeoman.dist));
     });
 });
 
 gulp.task('ngconstant:dev', function() {
     return ngConstant({
-        dest: 'app.constants.js',
-        name: 'rumblrsadminApp',
-        deps:   false,
-        noFile: true,
-        interpolate: /\{%=(.+?)%\}/g,
-        wrap: '/* jshint quotmark: false */\n"use strict";\n// DO NOT EDIT THIS FILE, EDIT THE GULP TASK NGCONSTANT SETTINGS INSTEAD WHICH GENERATES THIS FILE\n{%= __ngModule %}',
-        constants: {
-            ENV: 'dev',
-            VERSION: parseVersionFromPomXml()
-        }
-    })
+            dest: 'app.constants.js',
+            name: 'rumblrsadminApp',
+            deps: false,
+            noFile: true,
+            interpolate: /\{%=(.+?)%\}/g,
+            wrap: '/* jshint quotmark: false */\n"use strict";\n// DO NOT EDIT THIS FILE, EDIT THE GULP TASK NGCONSTANT SETTINGS INSTEAD WHICH GENERATES THIS FILE\n{%= __ngModule %}',
+            constants: {
+                ENV: 'dev',
+                VERSION: parseVersionFromPomXml()
+            }
+        })
         .pipe(gulp.dest(yeoman.app + 'scripts/app/'));
 });
 
 gulp.task('ngconstant:prod', function() {
     return ngConstant({
-        dest: 'app.constants.js',
-        name: 'rumblrsadminApp',
-        deps:   false,
-        noFile: true,
-        interpolate: /\{%=(.+?)%\}/g,
-        wrap: '/* jshint quotmark: false */\n"use strict";\n// DO NOT EDIT THIS FILE, EDIT THE GULP TASK NGCONSTANT SETTINGS INSTEAD WHICH GENERATES THIS FILE\n{%= __ngModule %}',
-        constants: {
-            ENV: 'prod',
-            VERSION: parseVersionFromPomXml()
-        }
-    })
+            dest: 'app.constants.js',
+            name: 'rumblrsadminApp',
+            deps: false,
+            noFile: true,
+            interpolate: /\{%=(.+?)%\}/g,
+            wrap: '/* jshint quotmark: false */\n"use strict";\n// DO NOT EDIT THIS FILE, EDIT THE GULP TASK NGCONSTANT SETTINGS INSTEAD WHICH GENERATES THIS FILE\n{%= __ngModule %}',
+            constants: {
+                ENV: 'prod',
+                VERSION: parseVersionFromPomXml()
+            }
+        })
         .pipe(gulp.dest(yeoman.tmp + 'scripts/app/'));
 });
 
@@ -275,7 +285,7 @@ gulp.task('jshint', function() {
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
-gulp.task('server', ['serve'], function () {
+gulp.task('server', ['serve'], function() {
     gutil.log('The `server` task has been deprecated. Use `gulp serve` to start a server');
 });
 

@@ -1,0 +1,28 @@
+<div class="panel panel-default" ng-repeat="(section, sectionData) in report">
+    <div class="panel-heading">{{sectionData.text}}</div>
+    <div class="panel-body">
+        <div class="row" ng-repeat="(part, partData) in sectionData.attr">
+            <div class="col-md-2">
+                <label>{{partData.text}}</label>
+            </div>
+            <div class="col-md-10">
+                <div class="form-group">
+                    <!-- Display when no special values have been defined for the part -->
+                    <div ng-if="partData.values==null" class="radio-inline h-fix-label-width" ng-repeat="condition in radios">
+                        <label class="radio-inline">
+                        <input type="radio" name="{{section}}-{{part}}" ng-value="{{condition.value}}" ng-model="detail.report[section][part].value">
+                          {{condition.text}}
+                        </label>
+                    </div>
+                    <!-- Display when special values have been defined for the part -->
+                    <div ng-if="partData.values!=null" class="radio-inline h-fix-label-width" ng-repeat="condition in partData.values">
+                        <label class="radio-inline">
+                          <input type="radio" name="{{section}}-{{part}}" ng-value="{{condition.value}}" ng-model="detail.report[section][part]">
+                          {{condition.text}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

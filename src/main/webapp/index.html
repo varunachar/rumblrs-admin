@@ -23,7 +23,7 @@
         <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
         <div ui-view="navbar" ng-cloak=""></div>
         <div class="container">
-            <div class="well" ui-view="content"></div>
+            <div ui-view="content"></div>
 
             <div class="footer">
                 <p translate="footer">This is your footer</p>
@@ -43,10 +43,8 @@
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
-        <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
         <script src="bower_components/sockjs-client/dist/sockjs.js"></script>
-        <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
         <script src="bower_components/json3/lib/json3.js"></script>
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -58,6 +56,7 @@
         <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
         <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 
@@ -129,6 +128,7 @@
     <script src="scripts/app/entities/bike/bike-edit.controller.js"></script>
     <script src="scripts/app/entities/bike/bike-modal.controller.js"></script>
     <script src="scripts/app/entities/bike/bike-delete.controller.js"></script>
+    <script src="scripts/app/entities/bike/bike-rating.directive.js"></script>
     <script src="scripts/components/entities/bike/bike.service.js"></script>
     <script src="scripts/app/entities/brand/brand.js"></script>
     <script src="scripts/app/entities/brand/brand.controller.js"></script>

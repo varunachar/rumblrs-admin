@@ -1,6 +1,7 @@
 package com.rumblrs.admin.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.hibernate.validator.constraints.Email;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -9,12 +10,15 @@ import com.rumblrs.admin.domain.util.CustomDateTimeDeserializer;
 import com.rumblrs.admin.domain.util.CustomDateTimeSerializer;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.util.StringUtils;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -27,184 +31,234 @@ import org.joda.time.DateTime;
 @Document(collection = "JHI_USER")
 public class User extends AbstractAuditingEntity implements Serializable {
 
-    @Id
-    private String id;
+	@Id
+	private String id;
 
-    @NotNull
-    @Pattern(regexp = "^[a-z0-9]*$")
-    @Size(min = 1, max = 50)
-    private String login;
+	@NotNull
+	@Pattern(regexp = "^[a-z0-9]*$")
+	@Size(min = 1, max = 50)
+	private String login;
 
-    @JsonIgnore
-    @NotNull
-    @Size(min = 60, max = 60) 
-    private String password;
+	@JsonIgnore
+	@NotNull
+	@Size(min = 60, max = 60)
+	private String password;
 
-    @Size(max = 50)
-    @Field("first_name")
-    private String firstName;
+	@Size(max = 50)
+	@Field("first_name")
+	private String firstName;
 
-    @Size(max = 50)
-    @Field("last_name")
-    private String lastName;
+	@Size(max = 50)
+	@Field("last_name")
+	private String lastName;
 
-    @Email
-    @Size(max = 100)
-    private String email;
+	@Transient
+	private String name;
 
-    private boolean activated = false;
+	@Email
+	@Size(max = 100)
+	private String email;
 
-    @Size(min = 2, max = 5)
-    @Field("lang_key")
-    private String langKey;
+	@NotNull
+	@Size(min = 10, max = 10)
+	@Field("mobile_no")
+	private String mobileNo;
 
-    @Size(max = 20)
-    @Field("activation_key")
-    @JsonIgnore
-    private String activationKey;
+	private boolean activated = false;
 
-    @Size(max = 20)
-    @Field("reset_key")
-    private String resetKey;
+	@Field("address")
+	private String address;
 
-    @JsonSerialize(using = CustomDateTimeSerializer.class)
-    @JsonDeserialize(using = CustomDateTimeDeserializer.class)
-    @Field("reset_date")
-    private DateTime resetDate = null;
+	@Field("landmark")
+	private String landmark;
 
-    @JsonIgnore
-    private Set<Authority> authorities = new HashSet<>();
+	@Size(min = 2, max = 5)
+	@Field("lang_key")
+	private String langKey;
 
-    public String getId() {
-        return id;
-    }
+	@Size(max = 20)
+	@Field("activation_key")
+	@JsonIgnore
+	private String activationKey;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	@Size(max = 20)
+	@Field("reset_key")
+	private String resetKey;
 
-    public String getLogin() {
-        return login;
-    }
+	@JsonSerialize(using = CustomDateTimeSerializer.class)
+	@JsonDeserialize(using = CustomDateTimeDeserializer.class)
+	@Field("reset_date")
+	private DateTime resetDate = null;
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
+	@JsonIgnore
+	private Set<Authority> authorities = new HashSet<>();
 
-    public String getPassword() {
-        return password;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public boolean getActivated() {
-        return activated;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setActivated(boolean activated) {
-        this.activated = activated;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getActivationKey() {
-        return activationKey;
-    }
+	public String getName() {
+		if (!StringUtils.isEmpty(name)) {
+			return name;
+		}
+		this.name = this.firstName + " " + this.lastName;
+		return this.name;
+	}
 
-    public void setActivationKey(String activationKey) {
-        this.activationKey = activationKey;
-    }
+	public void setName(String name) {
+		this.name = name;
+		if (!StringUtils.isEmpty(name)) {
+			String[] split = name.split("\\s", 2);
+			this.firstName = split[0];
+			this.lastName = split[1];
+		}
+	}
 
-    public String getResetKey() {
-        return resetKey;
-    }
+	public String getLandmark() {
+		return landmark;
+	}
 
-    public void setResetKey(String resetKey) {
-        this.resetKey = resetKey;
-    }
+	public void setLandmark(String landmark) {
+		this.landmark = landmark;
+	}
 
-    public DateTime getResetDate() {
-       return resetDate;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setResetDate(DateTime resetDate) {
-       this.resetDate = resetDate;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getLangKey() {
-        return langKey;
-    }
+	public String getMobileNo() {
+		return mobileNo;
+	}
 
-    public void setLangKey(String langKey) {
-        this.langKey = langKey;
-    }
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
 
-    public Set<Authority> getAuthorities() {
-        return authorities;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setAuthorities(Set<Authority> authorities) {
-        this.authorities = authorities;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+	public boolean getActivated() {
+		return activated;
+	}
 
-        User user = (User) o;
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
 
-        if (!login.equals(user.login)) {
-            return false;
-        }
+	public String getActivationKey() {
+		return activationKey;
+	}
 
-        return true;
-    }
+	public void setActivationKey(String activationKey) {
+		this.activationKey = activationKey;
+	}
 
-    @Override
-    public int hashCode() {
-        return login.hashCode();
-    }
+	public String getResetKey() {
+		return resetKey;
+	}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", activated='" + activated + '\'' +
-                ", langKey='" + langKey + '\'' +
-                ", activationKey='" + activationKey + '\'' +
-                "}";
-    }
+	public void setResetKey(String resetKey) {
+		this.resetKey = resetKey;
+	}
+
+	public DateTime getResetDate() {
+		return resetDate;
+	}
+
+	public void setResetDate(DateTime resetDate) {
+		this.resetDate = resetDate;
+	}
+
+	public String getLangKey() {
+		return langKey;
+	}
+
+	public void setLangKey(String langKey) {
+		this.langKey = langKey;
+	}
+
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		User user = (User) o;
+
+		if (!login.equals(user.login)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return login.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return "User{" + "login='" + login + '\'' + ", firstName='" + firstName
+				+ '\'' + ", lastName='" + lastName + '\'' + ", email='" + email
+				+ '\'' + ", activated='" + activated + '\'' + ", langKey='"
+				+ langKey + '\'' + ", activationKey='" + activationKey + '\''
+				+ "}";
+	}
 }

@@ -49,10 +49,26 @@
                     </tr>
                     <tr>
                         <td>
-                            <span>No of Owners</span>
+                            <span>Owner Name</span>
                         </td>
                         <td>
-                            <input type="text" class="input-sm form-control" value="{{bike.owners}}" readonly>
+                            <input type="text" class="input-sm form-control" value="{{owner.name}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Owner Number</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{owner.mobileNo}}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Owner Address</span>
+                        </td>
+                        <td>
+                            <input type="text" class="input-sm form-control" value="{{owner.address}}" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -81,14 +97,6 @@
                     </tr>
                     <tr>
                         <td>
-                            <span>Thumbnail</span>
-                        </td>
-                        <td>
-                            <input type="text" class="input-sm form-control" value="{{bike.thumbnail}}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <span>Reserved</span>
                         </td>
                         <td>
@@ -105,42 +113,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <span>Owner</span>
+                            <span>Insurance</span>
                         </td>
                         <td>
-                            <input type="text" class="input-sm form-control" value="{{bikeDetail.owner}}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Features</span>
-                        </td>
-                        <td>
-                            <input type="text" class="input-sm form-control" value="{{bikeDetail.features}}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Documents</span>
-                        </td>
-                        <td>
-                            <input type="text" class="input-sm form-control" value="{{bikeDetail.documents}}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Report</span>
-                        </td>
-                        <td>
-                            <input type="text" class="input-sm form-control" value="{{bikeDetail.report}}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Performance</span>
-                        </td>
-                        <td>
-                            <input type="text" class="input-sm form-control" value="{{bikeDetail.performance}}" readonly>
+                            <input type="text" class="input-sm form-control" value="{{bikeDetail.documents.insurance | date: 'mediumDate'}}" readonly>
                         </td>
                     </tr>
                 </tbody>

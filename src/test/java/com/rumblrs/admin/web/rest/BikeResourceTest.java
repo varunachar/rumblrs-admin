@@ -98,7 +98,6 @@ public class BikeResourceTest {
         bike.setName(DEFAULT_NAME);
         bike.setEngineCapacity(DEFAULT_ENGINE_CAPACITY);
         bike.setYearOfManufacture(DEFAULT_YEAR_OF_MANUFACTURE);
-        bike.setLocation(DEFAULT_LOCATION);
         bike.setKms(DEFAULT_KMS);
         bike.setOwners(DEFAULT_OWNERS);
         bike.setPrice(DEFAULT_PRICE);
@@ -127,7 +126,6 @@ public class BikeResourceTest {
         assertThat(testBike.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testBike.getEngineCapacity()).isEqualTo(DEFAULT_ENGINE_CAPACITY);
         assertThat(testBike.getYearOfManufacture()).isEqualTo(DEFAULT_YEAR_OF_MANUFACTURE);
-        assertThat(testBike.getLocation()).isEqualTo(DEFAULT_LOCATION);
         assertThat(testBike.getKms()).isEqualTo(DEFAULT_KMS);
         assertThat(testBike.getOwners()).isEqualTo(DEFAULT_OWNERS);
         assertThat(testBike.getPrice()).isEqualTo(DEFAULT_PRICE);
@@ -198,24 +196,6 @@ public class BikeResourceTest {
         assertThat(bikeRepository.findAll()).hasSize(0);
         // set the field null
         bike.setYearOfManufacture(null);
-
-        // Create the Bike, which fails.
-        restBikeMockMvc.perform(post("/api/bikes")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(bike)))
-                .andExpect(status().isBadRequest());
-
-        // Validate the database is still empty
-        List<Bike> bikes = bikeRepository.findAll();
-        assertThat(bikes).hasSize(0);
-    }
-
-    @Test
-    public void checkLocationIsRequired() throws Exception {
-        // Validate the database is empty
-        assertThat(bikeRepository.findAll()).hasSize(0);
-        // set the field null
-        bike.setLocation(null);
 
         // Create the Bike, which fails.
         restBikeMockMvc.perform(post("/api/bikes")
@@ -423,7 +403,6 @@ public class BikeResourceTest {
         bike.setName(UPDATED_NAME);
         bike.setEngineCapacity(UPDATED_ENGINE_CAPACITY);
         bike.setYearOfManufacture(UPDATED_YEAR_OF_MANUFACTURE);
-        bike.setLocation(UPDATED_LOCATION);
         bike.setKms(UPDATED_KMS);
         bike.setOwners(UPDATED_OWNERS);
         bike.setPrice(UPDATED_PRICE);
@@ -445,7 +424,6 @@ public class BikeResourceTest {
         assertThat(testBike.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testBike.getEngineCapacity()).isEqualTo(UPDATED_ENGINE_CAPACITY);
         assertThat(testBike.getYearOfManufacture()).isEqualTo(UPDATED_YEAR_OF_MANUFACTURE);
-        assertThat(testBike.getLocation()).isEqualTo(UPDATED_LOCATION);
         assertThat(testBike.getKms()).isEqualTo(UPDATED_KMS);
         assertThat(testBike.getOwners()).isEqualTo(UPDATED_OWNERS);
         assertThat(testBike.getPrice()).isEqualTo(UPDATED_PRICE);

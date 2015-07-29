@@ -7,35 +7,45 @@ import org.apache.commons.lang.RandomStringUtils;
  */
 public final class RandomUtil {
 
-    private static final int DEF_COUNT = 20;
+	private static final int OTP_LENGTH = 4;
+	private static final int DEF_COUNT = 20;
 
-    private RandomUtil() {
-    }
+	private RandomUtil() {
+	}
 
-    /**
-     * Generates a password.
-     *
-     * @return the generated password
-     */
-    public static String generatePassword() {
-        return RandomStringUtils.randomAlphanumeric(DEF_COUNT);
-    }
+	/**
+	 * Generates a password.
+	 *
+	 * @return the generated password
+	 */
+	public static String generatePassword() {
+		return RandomStringUtils.randomAlphanumeric(DEF_COUNT);
+	}
 
-    /**
-     * Generates an activation key.
-     *
-     * @return the generated activation key
-     */
-    public static String generateActivationKey() {
-        return RandomStringUtils.randomNumeric(DEF_COUNT);
-    }
+	/**
+	 * Generates an activation key.
+	 *
+	 * @return the generated activation key
+	 */
+	public static String generateActivationKey() {
+		return RandomStringUtils.randomNumeric(DEF_COUNT);
+	}
 
-    /**
-    * Generates a reset key.
-    *
-    * @return the generated reset key
-    */
-   public static String generateResetKey() {
-       return RandomStringUtils.randomNumeric(DEF_COUNT);
-   }
+	/**
+	 * Generates a reset key.
+	 *
+	 * @return the generated reset key
+	 */
+	public static String generateResetKey() {
+		return RandomStringUtils.randomNumeric(DEF_COUNT);
+	}
+
+	/**
+	 * Generates a random 4 digit number that can be used as an OTP
+	 * 
+	 * @return the generated 4 digit number
+	 */
+	public static String generateOTP() {
+		return RandomStringUtils.randomNumeric(OTP_LENGTH);
+	}
 }

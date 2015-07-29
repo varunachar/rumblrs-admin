@@ -1,11 +1,16 @@
 package com.rumblrs.admin.domain;
 
 import java.io.Serializable;
+import java.util.Map;
 import java.util.Objects;
 
+import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsonorg.JSONObjectSerializer;
 
 /**
  * A BikeDetails.
@@ -16,6 +21,9 @@ public class BikeDetail implements Serializable {
     @Id
     private String id;
 
+    /**
+     * User id
+     */
     @Field("owner")
     private String owner;
 
@@ -23,13 +31,11 @@ public class BikeDetail implements Serializable {
     private String features;
 
     @Field("documents")
-    private String documents;
+    private Documents documents;
 
+    @JsonSerialize(using=JSONObjectSerializer.class)
     @Field("report")
-    private String report;
-
-    @Field("performance")
-    private String performance;
+    private JSONObject report;
 
     public String getId() {
         return id;
@@ -55,29 +61,25 @@ public class BikeDetail implements Serializable {
         this.features = features;
     }
 
-    public String getDocuments() {
+    public Documents getDocuments() {
         return documents;
     }
 
-    public void setDocuments(String documents) {
+    public void setDocuments(Documents documents) {
         this.documents = documents;
     }
 
-    public String getReport() {
+    public JSONObject getReport() {
         return report;
     }
 
-    public void setReport(String report) {
+    public void setReport(Map<String, Object> report) {
+    	this.report = new JSONObject(report);
+    }
+    
+    /*public void setReport(JSONObject report) {
         this.report = report;
-    }
-
-    public String getPerformance() {
-        return performance;
-    }
-
-    public void setPerformance(String performance) {
-        this.performance = performance;
-    }
+    }*/
 
     @Override
     public boolean equals(Object o) {
@@ -107,8 +109,7 @@ public class BikeDetail implements Serializable {
                 ", owner='" + owner + "'" +
                 ", features='" + features + "'" +
                 ", documents='" + documents + "'" +
-                ", report='" + report + "'" +
-                ", performance='" + performance + "'" +
+                ", report='" + report.toString() + "'" +
                 '}';
     }
 }

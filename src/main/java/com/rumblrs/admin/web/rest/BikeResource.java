@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -24,8 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.rumblrs.admin.domain.Bike;
-import com.rumblrs.admin.domain.BikeDetail;
-import com.rumblrs.admin.domain.BikeRequestWrapper;
+import com.rumblrs.admin.web.rest.dto.BikeDTO;
 import com.rumblrs.admin.web.rest.service.BikeService;
 import com.rumblrs.admin.web.rest.util.PaginationUtil;
 
@@ -47,16 +47,16 @@ public class BikeResource {
 	@RequestMapping(value = "/bikes", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Timed
 	public ResponseEntity<Void> create(
-			@Valid @RequestBody BikeRequestWrapper bikeRequestWrapper)
+			@Valid @RequestBody BikeDTO bikeDto, HttpServletRequest request)
 			throws URISyntaxException {
-		log.debug("REST request to save Bike : {}", bikeRequestWrapper.getBike());
-		if (bikeRequestWrapper.getBike().getId() != null
-				|| bikeRequestWrapper.getBikeDetail().getId() != null) {
+		log.debug("REST request to save Bike : {}", bikeDto.getBike());
+		if (bikeDto.getBike().getId() != null
+				|| bikeDto.getBikeDetail().getId() != null) {
 			return ResponseEntity.badRequest()
 					.header("Failure", "A new bike cannot already have an ID")
 					.build();
 		}
-		Bike bike = bikeService.save(bikeRequestWrapper.getBike(), bikeRequestWrapper.getBikeDetail());
+		Bike bike = bikeService.save(bikeDto.getBike(), bikeDto.getBikeDetail(), bikeDto.getOwner());
 		return ResponseEntity.created(new URI("/api/bikes/" + bike.getId()))
 				.build();
 	}
@@ -66,13 +66,13 @@ public class BikeResource {
 	 */
 	@RequestMapping(value = "/bikes", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Timed
-	public ResponseEntity<Void> update(@Valid @RequestBody BikeRequestWrapper bikeRequestWrapper)
+	public ResponseEntity<Void> update(@Valid @RequestBody BikeDTO bikeDto, HttpServletRequest request)
 			throws URISyntaxException {
-		log.debug("REST request to update Bike : {}", bikeRequestWrapper.getBike());
-		if (bikeRequestWrapper.getBike().getId() == null) {
-			return create(bikeRequestWrapper);
+		log.debug("REST request to update Bike : {}", bikeDto.getBike());
+		if (bikeDto.getBike().getId() == null) {
+			return create(bikeDto, request);
 		}
-		bikeService.update(bikeRequestWrapper.getBike(), bikeRequestWrapper.getBikeDetail());
+		bikeService.update(bikeDto.getBike(), bikeDto.getBikeDetail());
 		return ResponseEntity.ok().build();
 	}
 
@@ -96,7 +96,7 @@ public class BikeResource {
 	 */
 	@RequestMapping(value = "/bikes/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@Timed
-	public ResponseEntity<BikeRequestWrapper> get(@PathVariable String id) {
+	public ResponseEntity<BikeDTO> get(@PathVariable String id) {
 		log.debug("REST request to get Bike : {}", id);
 		return Optional.ofNullable(bikeService.findOne(id))
 				.map(bike -> new ResponseEntity<>(bike, HttpStatus.OK))
